@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Start naviagation window with to-do selected
+        navigationView.setCheckedItem( R.id.nav_button_todo );
     }
 
     @Override
