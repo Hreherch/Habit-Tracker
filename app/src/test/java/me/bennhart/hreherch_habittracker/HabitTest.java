@@ -40,8 +40,8 @@ public class HabitTest extends TestCase {
         Habit aHabit = new Habit( habitName );
         GregorianCalendar calendar = new GregorianCalendar();
 
-        DateFormat formatter = new SimpleDateFormat( DATE_FORMAT, Locale.CANADA );
- 
+        DateFormat formatter = new SimpleDateFormat( DATE_FORMAT, Locale.getDefault() );
+
 
         assertEquals( "testHabitDate: Habit date format does not match expected format!",
                 formatter.format( calendar.getTime() ) , aHabit.getStartDate() );
@@ -52,7 +52,7 @@ public class HabitTest extends TestCase {
         GregorianCalendar calendar = new GregorianCalendar( 0, 2, 14 );
         Habit aHabit = new Habit( habitName, calendar );
 
-        DateFormat formatter = new SimpleDateFormat( DATE_FORMAT, Locale.CANADA );
+        DateFormat formatter = new SimpleDateFormat( DATE_FORMAT, Locale.getDefault() );
 
         assertEquals( "testHabitDateConstructor: init calendar date is not the same as habit's!",
                 formatter.format( calendar.getTime() ), aHabit.getStartDate() );
