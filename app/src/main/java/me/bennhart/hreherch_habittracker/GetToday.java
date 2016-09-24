@@ -1,0 +1,28 @@
+package me.bennhart.hreherch_habittracker;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
+/**
+ * Created by Ben on 2016-09-24.
+ */
+public class GetToday {
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
+
+    public static String getString() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        DateFormat formatter = new SimpleDateFormat( DATE_FORMAT, Locale.getDefault() );
+        return formatter.format( calendar.getTime() );
+    }
+
+    public static String getStringPlus( int plusDays ) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        DateFormat formatter = new SimpleDateFormat( DATE_FORMAT, Locale.getDefault() );
+        calendar.add( Calendar.DATE, plusDays );
+        return formatter.format( calendar.getTime() );
+    }
+
+}

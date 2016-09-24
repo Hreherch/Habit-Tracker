@@ -19,6 +19,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
+        android:maxLength="25"
         android:gravity="start"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text=""
@@ -38,81 +39,91 @@
         android:layout_alignParentStart="true"
         android:id="@+id/relativeLayout">
 
-        <Button
+        <ToggleButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="S"
+            android:textOn="S"
+            android:textOff="S"
             android:textSize="30sp"
             android:id="@+id/button_sunday"
             android:background="?selectableItemBackground"
-            android:textColor="@color/colorActive"
+            android:textColor="@drawable/dotw_toggle"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/button_monday" />
 
-        <Button
+        <ToggleButton
             android:layout_width="@dimen/SMTWTFS_width"
             android:layout_height="@dimen/SMTWTFS_height"
-            android:text="M"
+            android:checked="true"
+            android:textOn="M"
+            android:textOff="M"
             android:textSize="30sp"
             android:id="@+id/button_monday"
             android:background="?selectableItemBackground"
-            android:textColor="@color/colorInactive"
+            android:textColor="@drawable/dotw_toggle"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/button_tuesday" />
 
-        <Button
+        <ToggleButton
             android:layout_width="@dimen/SMTWTFS_width"
             android:layout_height="@dimen/SMTWTFS_height"
-            android:text="T"
+            android:textOn="T"
+            android:textOff="T"
             android:textSize="30sp"
             android:id="@+id/button_tuesday"
             android:background="?selectableItemBackground"
-            android:textColor="@color/colorActive"
+            android:textColor="@drawable/dotw_toggle"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/button_wednesday" />
 
-        <Button
+        <ToggleButton
             android:layout_width="@dimen/SMTWTFS_width"
             android:layout_height="@dimen/SMTWTFS_height"
-            android:text="W"
+            android:textOn="W"
+            android:textOff="W"
+            android:checked="true"
             android:textSize="30sp"
             android:layout_centerHorizontal="true"
             android:id="@+id/button_wednesday"
             android:background="?selectableItemBackground"
-            android:textColor="@color/colorActive"
+            android:textColor="@drawable/dotw_toggle"
             android:layout_centerVertical="true"
             android:layout_centerInParent="true" />
 
-        <Button
+        <ToggleButton
             android:layout_width="@dimen/SMTWTFS_width"
             android:layout_height="@dimen/SMTWTFS_height"
-            android:text="T"
+            android:textOn="T"
+            android:textOff="T"
             android:textSize="30sp"
             android:id="@+id/button_thursday"
             android:background="?selectableItemBackground"
-            android:textColor="@color/colorActive"
+            android:textColor="@drawable/dotw_toggle"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/button_wednesday" />
 
-        <Button
+        <ToggleButton
             android:layout_width="@dimen/SMTWTFS_width"
             android:layout_height="@dimen/SMTWTFS_height"
-            android:text="F"
+            android:textOn="F"
+            android:textOff="F"
+            android:checked="true"
             android:textSize="30sp"
             android:id="@+id/button_friday"
             android:background="?selectableItemBackground"
-            android:textColor="@color/colorActive"
+            android:textColor="@drawable/dotw_toggle"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/button_thursday" />
 
-        <Button
+        <ToggleButton
             android:layout_width="@dimen/SMTWTFS_width"
             android:layout_height="@dimen/SMTWTFS_height"
-            android:text="S"
+            android:textOn="S"
+            android:textOff="S"
             android:textSize="30sp"
             android:id="@+id/button_saturday"
             android:background="?selectableItemBackground"
-            android:textColor="@color/colorActive"
+            android:textColor="@drawable/dotw_toggle"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/button_friday" />
 
@@ -145,11 +156,13 @@
         android:layout_alignStart="@+id/editText_habitName" />
 
     <EditText
-        android:layout_width="115dp"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
-        android:hint="[auto fill with current date]"
+        android:hint="yyyy-mm-dd"
+        android:maxLines="1"
+        android:maxLength="10"
         android:id="@+id/editText_date"
         android:layout_below="@+id/textView_date"
         android:layout_alignStart="@+id/textView_date" />
@@ -164,5 +177,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="77dp" />
 
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageButton_calendar"
+        android:src="@drawable/ic_calendar_black"
+        android:layout_alignTop="@+id/editText_date"
+        android:layout_toEndOf="@+id/editText_date"
+        android:layout_alignBottom="@+id/editText_date"
+        android:background="@color/colorPrimary"
+        android:onClick="summonCalendar" />
 
 </RelativeLayout>

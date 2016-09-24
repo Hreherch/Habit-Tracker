@@ -15,7 +15,7 @@ public class CompletionTracker {
     private List<String> dates = new ArrayList<>();
     private List<Integer> completions = new ArrayList<>();
     private String startDate = "0000-00-00";
-    private final String DATE_FORMAT = "yyyy-MM-dd";
+    //private final String DATE_FORMAT = "yyyy-MM-dd";
 
     public CompletionTracker( String date ) {
         date = date.trim();
@@ -27,7 +27,7 @@ public class CompletionTracker {
     private void validateDate( String date ) throws IllegalArgumentException {
         // TODO create a class that extends string and returns today's date with format?
         GregorianCalendar calendar = new GregorianCalendar();
-        DateFormat formatter = new SimpleDateFormat( DATE_FORMAT, Locale.getDefault() );
+        DateFormat formatter = new SimpleDateFormat( GetToday.DATE_FORMAT, Locale.getDefault() );
         String today = formatter.format( calendar.getTime() );
 
         // Check if date is ahead of today
@@ -46,7 +46,7 @@ public class CompletionTracker {
         try {
             formatter.parse( date );
         } catch ( ParseException e ) {
-            String message = date + " is not a valid date. Ensure format: " + DATE_FORMAT;
+            String message = date + " is not a valid date. Ensure format: " + GetToday.DATE_FORMAT;
             throw new IllegalArgumentException( message );
         }
     }
@@ -65,11 +65,11 @@ public class CompletionTracker {
         }
     }
 
-    // returns -1 if date is before start range
+    // returns -1 if date is before start range or after today
     public int getCompletions( String date ) {
         date = date.trim();
 
-        if ( 0 < startDate.compareTo( date ) ) {
+        if ( 0 < startDate.compareTo( date ) || 0 < date.compareTo( GetToday.getString() ) ) {
             return -1;
         }
 
@@ -80,10 +80,15 @@ public class CompletionTracker {
         }
     }
 
-    public void setCompletions( String date, int numCompletions ) {
+    public void setCompletions( String date, int numCompletions ) throws IllegalArgumentException {
+        if (numCompletions < 0) {
+            throw new IllegalArgumentException( "You may not have less than 0 completions" );
+        }
+
         date = date.trim();
         validateDate( date );
 
+        // TODO simplify this if/else block
         if ( dates.contains( date ) )  {
             completions.set( dates.indexOf( date ), numCompletions );
         } else {

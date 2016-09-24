@@ -77,20 +77,34 @@ public class CompletionTrackerTest extends TestCase {
         int num2 = 5;
         int num3 = 2;
 
-        tracker.setCompletions( date, negativeNumber );
+        try {
+            tracker.setCompletions( date, negativeNumber );
+            assertFalse( "testSettingCompletions: should not be able to set below zero.", true );
+        } catch ( IllegalArgumentException e ) {
+            assertTrue( true );
+        }
 
         calendar.add( Calendar.DATE, 2 );
         String date2 = formatter.format( calendar.getTime() );
         tracker.setCompletions( date2, num2 );
 
+        calendar.add( Calendar.DATE, 10 );
+        String date3 = formatter.format( calendar.getTime() );
         try {
-            calendar.add( Calendar.DATE, 10 );
-            String date3 = formatter.format( calendar.getTime() );
             tracker.setCompletions( date3, num3 );
             assertFalse( "testSettingCompletions: setter did not check for date in future", true );
         } catch ( IllegalArgumentException e ) {
             assertTrue( true );
         }
+
+        assertEquals( "testSettingCompletions: setter did not set negative completions correctly",
+                      0, tracker.getCompletions( date ) );
+
+        assertEquals( "testSettingCompletions: setter did not set regular completions correctly",
+                tracker.getCompletions( date2 ), num2 );
+
+        assertEquals( "testSettingCompletions: setter did not set future completions correctly",
+                      -1, tracker.getCompletions( date3 ) );
 
     } // testSettingCompletions
 
