@@ -22,7 +22,21 @@
         <activity
             android:name=".ViewStatisticsActivity"
             android:label="@string/title_activity_view_statistics"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
+        </activity>
+        <activity
+            android:name=".ViewHistoryActivity"
+            android:label="@string/title_activity_view_history"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -66,6 +66,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        // reset navigation button to the to-do on return from other activities
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setCheckedItem( R.id.nav_button_todo );
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -100,6 +109,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -107,6 +117,8 @@ public class MainActivity extends AppCompatActivity
             // do nothing (you're already here)
 
         } else if (id == R.id.nav_button_history) {
+            Intent intent = new Intent( MainActivity.this, ViewHistoryActivity.class );
+            startActivity( intent );
 
         } else if (id == R.id.nav_button_statistics) {
             Intent intent = new Intent( MainActivity.this, ViewStatisticsActivity.class );

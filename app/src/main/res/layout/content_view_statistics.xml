@@ -10,6 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="me.bennhart.hreherch_habittracker.ViewStatisticsActivity"
-    tools:showIn="@layout/activity_view_statistics">
+    tools:showIn="@layout/app_bar_view_statistics">
 
 </RelativeLayout>

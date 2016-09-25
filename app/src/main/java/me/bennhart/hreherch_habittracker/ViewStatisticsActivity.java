@@ -1,16 +1,18 @@
 package me.bennhart.hreherch_habittracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.view.View;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 public class ViewStatisticsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,7 +33,7 @@ public class ViewStatisticsActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Start navigation window with to-do selected
+        // Start navigation window with statistics selected
         navigationView.setCheckedItem( R.id.nav_button_statistics );
     }
 
@@ -43,6 +45,13 @@ public class ViewStatisticsActivity extends AppCompatActivity
         } else {
             this.finish();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.view_statistics, menu);
+        return true;
     }
 
     @Override
@@ -67,10 +76,17 @@ public class ViewStatisticsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_button_todo) {
-            // Handle the camera action
+            this.finish();
+            return true;
+
         } else if (id == R.id.nav_button_history) {
+            this.finish();
+            Intent intent = new Intent( ViewStatisticsActivity.this, ViewHistoryActivity.class );
+            startActivity( intent );
+            return true;
 
         } else if (id == R.id.nav_button_statistics) {
+            // do nothing ( you're already here )
 
         } else if (id == R.id.nav_reset_all) {
 
@@ -80,5 +96,4 @@ public class ViewStatisticsActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }
