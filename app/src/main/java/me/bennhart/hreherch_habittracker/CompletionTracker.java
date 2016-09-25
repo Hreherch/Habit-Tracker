@@ -14,14 +14,17 @@ import java.util.Locale;
 public class CompletionTracker {
     private List<String> dates = new ArrayList<>();
     private List<Integer> completions = new ArrayList<>();
-    private String startDate = "0000-00-00";
+    private String startDate;
     //private final String DATE_FORMAT = "yyyy-MM-dd";
 
     public CompletionTracker( String date ) {
         date = date.trim();
-        validateDate( date );
         startDate = date;
         setCompletions( date, 0 );
+    }
+
+    public String getStartDate() {
+        return startDate;
     }
 
     private void validateDate( String date ) throws IllegalArgumentException {
@@ -37,7 +40,7 @@ public class CompletionTracker {
         }
 
         // Check if date is behind startDate
-        if ( startDate.compareTo( date ) > 0 ) {
+        if ( getStartDate().compareTo( date ) > 0 ) {
             String message = "You may not add a completion to a date before the initial date";
             throw new IllegalArgumentException( message );
         }
@@ -69,7 +72,7 @@ public class CompletionTracker {
     public int getCompletions( String date ) {
         date = date.trim();
 
-        if ( 0 < startDate.compareTo( date ) || 0 < date.compareTo( GetToday.getString() ) ) {
+        if ( 0 < getStartDate().compareTo( date ) || 0 < date.compareTo( GetToday.getString() ) ) {
             return -1;
         }
 
@@ -96,5 +99,4 @@ public class CompletionTracker {
             completions.set( dates.indexOf( date ), numCompletions );
         }
     }
-
 }

@@ -104,10 +104,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_button_todo) {
-            // Handle the camera action
+            // do nothing (you're already here)
+
         } else if (id == R.id.nav_button_history) {
 
         } else if (id == R.id.nav_button_statistics) {
+            Intent intent = new Intent( MainActivity.this, ViewStatisticsActivity.class );
+            startActivity( intent );
 
         } else if (id == R.id.nav_reset_all) {
 

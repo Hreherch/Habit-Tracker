@@ -101,7 +101,7 @@ public class CompletionTrackerTest extends TestCase {
                       0, tracker.getCompletions( date ) );
 
         assertEquals( "testSettingCompletions: setter did not set regular completions correctly",
-                tracker.getCompletions( date2 ), num2 );
+                      tracker.getCompletions( date2 ), num2 );
 
         assertEquals( "testSettingCompletions: setter did not set future completions correctly",
                       -1, tracker.getCompletions( date3 ) );

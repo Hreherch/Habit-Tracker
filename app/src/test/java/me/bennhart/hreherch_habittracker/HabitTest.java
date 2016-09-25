@@ -39,9 +39,7 @@ public class HabitTest extends TestCase {
         String habitName = "dateHabit";
         Habit aHabit = new Habit( habitName );
         GregorianCalendar calendar = new GregorianCalendar();
-
         DateFormat formatter = new SimpleDateFormat( GetToday.DATE_FORMAT, Locale.getDefault() );
-
 
         assertEquals( "testHabitDate: Habit date format does not match expected format!",
                 formatter.format( calendar.getTime() ) , aHabit.getStartDate() );
@@ -50,11 +48,47 @@ public class HabitTest extends TestCase {
     public void testHabitDateConstructor() {
         String habitName = "myHabit";
         GregorianCalendar calendar = new GregorianCalendar( 0, 2, 14 );
-        Habit aHabit = new Habit( habitName, calendar );
-
         DateFormat formatter = new SimpleDateFormat( GetToday.DATE_FORMAT, Locale.getDefault() );
+
+        Habit aHabit = new Habit( habitName, formatter.format( calendar.getTime() ) );
 
         assertEquals( "testHabitDateConstructor: init calendar date is not the same as habit's!",
                 formatter.format( calendar.getTime() ), aHabit.getStartDate() );
+    }
+
+    // testing implementation of CompletionTracker in Habit
+    public void testInitHabitWithCompletions() {
+        String habitName = "completion_habit";
+        String today = GetToday.getString();
+        Habit myHabit = new Habit( habitName, today );
+        assertEquals( "testInitHabitWithCompletions: must initialize with zero completions",
+                      0, myHabit.getHabitCompletions( today ) );
+
+        assertEquals( "testInitHabitWithCompletions: must be initialized with given date",
+                      GetToday.getString(), myHabit.getStartDate() );
+
+        assertEquals( "testInitHabitWithCompletions: must return -1 on future day completions",
+                      -1, myHabit.getHabitCompletions( GetToday.getStringPlus( 2 ) ) );
+
+        assertEquals( "testInitHabitWithCompletions: must return -1 on days before start date",
+                      -1, myHabit.getHabitCompletions( GetToday.getStringPlus( -2 ) ) );
+
+    }
+
+    public void testAddHabitCompletions() {
+        String date = GetToday.getStringPlus( -7 );
+        String theDate = date;
+        Habit myHabit = new Habit( "aName", date );
+        int completions[] = { 1, 0, 1, 4, 2, 3 };
+        for ( int numCompletions : completions ) {
+            for ( int i = 0; i < numCompletions; i++ ) {
+                myHabit.addHabitCompletion( theDate );
+            }
+            assertEquals( "testAddHabitCompletions: number of completions does not equal input",
+                          numCompletions, myHabit.getHabitCompletions( theDate ) );
+            theDate = GetToday.getDatePlus( theDate, 1 );
+        }
+        assertEquals( "testAddHabitCompletions: A day with no completions returns 0",
+                      0, myHabit.getHabitCompletions( GetToday.getDatePlus( date, 1 ) ) );
     }
 }

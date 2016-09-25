@@ -16,16 +16,16 @@ import java.util.Locale;
  */
 public class Habit {
     private String name;
-    private GregorianCalendar calendar;
+    private CompletionTracker completionTracker;
 
     public Habit( String habitName ) {
         this.name = habitName;
-        this.calendar = new GregorianCalendar();
+        this.completionTracker = new CompletionTracker( GetToday.getString() );
     }
 
-    public Habit( String habitName, GregorianCalendar habitCalendar ) {
+    public Habit( String habitName, String date ) {
         this.name = habitName;
-        this.calendar = habitCalendar;
+        this.completionTracker = new CompletionTracker( date );
     }
 
     public String getName() {
@@ -37,8 +37,29 @@ public class Habit {
     }
 
     public String getStartDate() {
-        DateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd", Locale.CANADA );
-        return formatter.format( calendar.getTime() );
+        return completionTracker.getStartDate();
+    }
+
+    public String checkNull( String date ) {
+        if ( date == null ) {
+            return GetToday.getString();
+        }
+        return date;
+    }
+
+    public void addHabitCompletion( String date ) {
+        date = checkNull( date );
+        completionTracker.addCompletion( date );
+    }
+
+    public int getHabitCompletions( String date ) {
+        date = checkNull( date );
+        return completionTracker.getCompletions( date );
+    }
+
+    public void setHabitCompletions( String date, int numCompletions ) {
+        date = checkNull( date );
+        completionTracker.setCompletions( date, numCompletions );
     }
 
 }

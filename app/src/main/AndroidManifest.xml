@@ -18,7 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddHabitActivity"></activity>
+        <activity android:name=".AddHabitActivity" />
+        <activity
+            android:name=".ViewStatisticsActivity"
+            android:label="@string/title_activity_view_statistics"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
