@@ -13,7 +13,6 @@ import android.widget.EditText;
 import java.util.Calendar;
 
 public class AddHabitActivity extends AppCompatActivity {
-    private boolean[] dotw = { false, true, true, true, true, false, false };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,39 +24,11 @@ public class AddHabitActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled( true );
         }
 
-        EditText editText_date = (EditText) findViewById( R.id.editText_date );
-        editText_date.setText( GetToday.getString() );
-    }
+        GetToday today = new GetToday();
 
-//    @SuppressWarnings( "deprecation" )
-//    public void changeActive( View v ) {
-//        Button b = (Button) v;
-//        int id = b.getId();
-//        int inactiveColor = getResources().getColor( R.color.colorInactive );
-//        int activeColor = getResources().getColor( R.color.colorActive );
-//        int index = -1;
-//
-//        if ( id == R.id.button_sunday ) {
-//            index = 0;
-//        } else if ( id == R.id.button_monday ) {
-//            index = 1;
-//        } else if ( id == R.id.button_tuesday ) {
-//            index = 2;
-//        } else if ( id == R.id.button_wednesday ) {
-//            index = 3;
-//        } else if ( id == R.id.button_thursday ) {
-//            index = 4;
-//        } else if ( id == R.id.button_friday ) {
-//            index = 5;
-//        } else if ( id == R.id.button_saturday ) {
-//            index = 6;
-//        } else if ( index == -1 ) {
-//            throw new RuntimeException( "Unexpected call to AddHabitActivity.changeActive()" );
-//        }
-//
-//        dotw[ index ] = !dotw[ index ];
-//        b.setTextColor( dotw[ index ] ? activeColor : inactiveColor );
-//    }
+        EditText editText_date = (EditText) findViewById( R.id.editText_date );
+        editText_date.setText( today.getString() );
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

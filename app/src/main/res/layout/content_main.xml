@@ -8,12 +8,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorPrimaryLight"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="me.bennhart.hreherch_habittracker.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/frameLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="XXXXXXXXXDAY"
+            android:textStyle="bold"
+            android:id="@+id/editText_dayName"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="35sp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="bottom"
+            android:textColor="@color/colorActive"/>
+    </FrameLayout>
+
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/listView"
+        android:layout_below="@+id/frameLayout"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

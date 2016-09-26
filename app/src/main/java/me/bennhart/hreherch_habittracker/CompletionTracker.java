@@ -28,10 +28,10 @@ public class CompletionTracker {
     }
 
     private void validateDate( String date ) throws IllegalArgumentException {
-        // TODO create a class that extends string and returns today's date with format?
-        GregorianCalendar calendar = new GregorianCalendar();
-        DateFormat formatter = new SimpleDateFormat( GetToday.DATE_FORMAT, Locale.getDefault() );
-        String today = formatter.format( calendar.getTime() );
+        GetToday getToday = new GetToday();
+        DateFormat formatter = new SimpleDateFormat( getToday.getDateFormat(),
+                                                     Locale.getDefault() );
+        String today = getToday.getString();
 
         // Check if date is ahead of today
         if ( today.compareTo( date ) < 0 ) {
@@ -49,7 +49,8 @@ public class CompletionTracker {
         try {
             formatter.parse( date );
         } catch ( ParseException e ) {
-            String message = date + " is not a valid date. Ensure format: " + GetToday.DATE_FORMAT;
+            String message = date + " is not a valid date. Ensure format: "
+                             + getToday.getDateFormat();
             throw new IllegalArgumentException( message );
         }
     }
@@ -71,8 +72,9 @@ public class CompletionTracker {
     // returns -1 if date is before start range or after today
     public int getCompletions( String date ) {
         date = date.trim();
+        GetToday today = new GetToday();
 
-        if ( 0 < getStartDate().compareTo( date ) || 0 < date.compareTo( GetToday.getString() ) ) {
+        if ( 0 < getStartDate().compareTo( date ) || 0 < date.compareTo( today.getString() ) ) {
             return -1;
         }
 
