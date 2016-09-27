@@ -42,7 +42,7 @@ public class GetToday {
 
     public String getDayName() {
         GregorianCalendar calendar = new GregorianCalendar();
-        DateFormat formatter = new SimpleDateFormat( "EEE", Locale.getDefault() );
+        DateFormat formatter = new SimpleDateFormat( "EEEE", Locale.getDefault() );
         return formatter.format( calendar.getTime() );
     }
 

@@ -18,7 +18,8 @@
     <EditText
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:maxLines="1"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
         android:maxLength="25"
         android:gravity="start"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -173,6 +174,7 @@
         android:background="@color/colorActive"
         android:text="Add Habit"
         android:id="@+id/button_addHabit"
+        android:onClick="addHabit"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="77dp" />

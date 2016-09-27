@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
@@ -39,6 +41,41 @@ public class AddHabitActivity extends AppCompatActivity {
             return true;
         } else {
             return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public boolean[] getCheckedDays() {
+        int[] buttonIds = { R.id.button_sunday, R.id.button_monday, R.id.button_tuesday,
+                            R.id.button_wednesday, R.id.button_thursday, R.id.button_friday,
+                            R.id.button_saturday };
+        boolean[] dotw = { false, false, false, false, false, false, false };
+
+        for ( int i = 0; i < buttonIds.length; i++ ) {
+            ToggleButton button = (ToggleButton) findViewById( buttonIds[i] );
+            dotw[ i ] = button.isChecked();
+        }
+
+        return dotw;
+    }
+
+    public void addHabit( View v ) {
+        HabitListController controller = new HabitListController();
+
+        EditText editText_habitName = (EditText) findViewById( R.id.editText_habitName );
+        String habitName = editText_habitName.getText().toString();
+
+        EditText editText_date = (EditText) findViewById( R.id.editText_date );
+
+        String error = "";
+        error = controller.addHabit( habitName,
+                                     editText_date.getText().toString(),
+                                     getCheckedDays() );
+        if ( error != null ) {
+            Toast.makeText( this, error, Toast.LENGTH_LONG ).show();
+
+        } else {
+            Toast.makeText(this, "Habit: " + habitName + " added.", Toast.LENGTH_SHORT).show();
+            this.finish();
         }
     }
 }

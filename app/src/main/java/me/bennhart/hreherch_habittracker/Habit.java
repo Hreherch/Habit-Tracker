@@ -29,13 +29,25 @@ public class Habit {
 
     public Habit( String habitName ) {
         GetToday today = new GetToday();
+        checkName( habitName );
         this.name = habitName;
         this.completionTracker = new CompletionTracker( today.getString() );
     }
 
     public Habit( String habitName, String date ) {
+        checkName( habitName );
         this.name = habitName;
-        this.completionTracker = new CompletionTracker( date );
+        try {
+            this.completionTracker = new CompletionTracker(date);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException( "Invalid date (must be today or before today)." );
+        }
+    }
+
+    private void checkName( String name ) {
+        if ( name.length() <= 0 ) {
+            throw new IllegalArgumentException( "A habit name may not be blank." );
+        }
     }
 
     public String getName() {
@@ -43,6 +55,7 @@ public class Habit {
     }
 
     public void setName( String newName ) {
+        checkName( newName );
         this.name = newName;
     }
 
@@ -100,7 +113,7 @@ public class Habit {
 
     public boolean isActiveToday() {
         GregorianCalendar calendar = new GregorianCalendar();
-        int dotw = calendar.get( Calendar.DAY_OF_WEEK );
+        int dotw = calendar.get( Calendar.DAY_OF_WEEK ) - 1;
         return isActiveOn( dotw );
     }
 

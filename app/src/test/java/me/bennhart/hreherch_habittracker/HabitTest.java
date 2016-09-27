@@ -1,12 +1,16 @@
 package me.bennhart.hreherch_habittracker;
 
+import android.app.DatePickerDialog;
+
 import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -200,14 +204,49 @@ public class HabitTest extends TestCase {
 
     // Test that isActiveToday gets the right day of the week
     public void testActiveToday() {
-        long systemTime = System.currentTimeMillis();
-        systemTime = systemTime % ( 1000 * 60 * 60 * 24 * 7 );
-        System.out.println( systemTime );
-        int dotw = 0;
-        while ( systemTime > 1000 * 60 * 60 * 24 ) {
-            systemTime -= 1000 * 60 * 60 * 24;
-            dotw++;
+        GregorianCalendar calendar = new GregorianCalendar();
+        DateFormat formatter = new SimpleDateFormat( "EEE", Locale.getDefault() );
+        Habit myHabit = new Habit( "aHabit" );
+        int dotw = -1;
+
+        String day = formatter.format( calendar.getTime() );
+        System.out.print( day );
+        switch( day )  {
+            case "Sun":
+                dotw = myHabit.SUN;
+                break;
+            case "Mon":
+                dotw = myHabit.MON;
+                break;
+            case "Tue":
+                dotw = myHabit.TUE;
+                break;
+            case "Wed":
+                dotw = myHabit.WED;
+                break;
+            case "Thu":
+                dotw = myHabit.THU;
+                break;
+            case "Fri":
+                dotw = myHabit.FRI;
+                break;
+            case "Sat":
+                dotw = myHabit.SAT;
+                break;
         }
-        System.out.println( (dotw + 4) % 7 );
+
+        myHabit.setActive( dotw, true );
+        assertTrue( "testActiveToday: habit should be active",
+                    myHabit.isActiveToday() );
+    }
+
+    // Test that set active( day, bool ) correctly sets that day.
+    public void testSetActive() {
+        Habit myHabit = new Habit( "helpme" );
+
+        myHabit.setActive( myHabit.MON, true );
+
+        assertTrue( "testSetActive: Mondays were set active.",
+                     myHabit.isActiveOn( myHabit.MON ) );
     }
 }
