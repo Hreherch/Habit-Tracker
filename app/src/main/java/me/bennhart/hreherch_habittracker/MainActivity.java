@@ -31,8 +31,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,10 +49,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        TextView dayText = (TextView) findViewById( R.id.editText_dayName );
-        GetToday today = new GetToday();
-        dayText.setText( today.getDayName() );
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +77,33 @@ public class MainActivity extends AppCompatActivity
     public void onResume() {
         super.onResume();
 
+        // set day of the week text for today
+        TextView dayText = (TextView) findViewById( R.id.editText_dayName );
+        GetToday today = new GetToday();
+        dayText.setText( today.getDayName() );
+
         // reset navigation button to the to-do on return from other activities
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setCheckedItem( R.id.nav_button_todo );
+
+        // update listViewa
+        ListView habitListView = (ListView) findViewById( R.id.listView_ofHabits );
+        final HabitAdapter habitArrayAdapter;
+        final ArrayList<Habit> list = new ArrayList<Habit>();
+        ArrayList<Habit> habitList = HabitListController.getHabitList().getHabits();
+        habitArrayAdapter = new HabitAdapter( this, R.layout.habitlist_item,
+                                              habitList );
+        habitListView.setAdapter( habitArrayAdapter );
+
+        HabitListController.getHabitList().addListener(new Listener() {
+            @Override
+            public void update() {
+                list.clear();
+                ArrayList<Habit> newList = HabitListController.getHabitList().getHabits();
+                list.addAll( newList );
+                habitArrayAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

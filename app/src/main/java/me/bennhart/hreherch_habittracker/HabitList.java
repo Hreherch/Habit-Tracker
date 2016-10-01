@@ -1,5 +1,7 @@
 package me.bennhart.hreherch_habittracker;
 
+import android.net.sip.SipAudioCall;
+
 import java.util.ArrayList;
 
 /**
@@ -8,10 +10,12 @@ import java.util.ArrayList;
 public class HabitList {
     protected ArrayList<Habit> habitList;
     protected ArrayList<String> habitNames;
+    protected ArrayList<Listener> listeners;
 
     public HabitList() {
         habitList = new ArrayList<Habit>();
         habitNames = new ArrayList<String>();
+        listeners = new ArrayList<Listener>();
     }
 
     public ArrayList<Habit> getHabits() {
@@ -47,5 +51,15 @@ public class HabitList {
 
     public int getSize() {
         return habitList.size();
+    }
+
+    public void addListener(Listener listen) {
+        listeners.add( listen );
+    }
+
+    public void notifyListeners() {
+        for ( Listener listen : listeners ) {
+            listen.update();
+        }
     }
 }

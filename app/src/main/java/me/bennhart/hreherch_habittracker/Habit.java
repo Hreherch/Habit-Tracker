@@ -1,5 +1,7 @@
 package me.bennhart.hreherch_habittracker;
 
+import android.support.annotation.Nullable;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -71,17 +73,17 @@ public class Habit {
         return date;
     }
 
-    public void addHabitCompletion( String date ) {
+    public void addHabitCompletion( @Nullable String date ) {
         date = checkNull( date );
         completionTracker.addCompletion( date );
     }
 
-    public int getHabitCompletions( String date ) {
+    public int getHabitCompletions( @Nullable String date ) {
         date = checkNull( date );
         return completionTracker.getCompletions( date );
     }
 
-    public void setHabitCompletions( String date, int numCompletions ) {
+    public void setHabitCompletions( @Nullable String date, int numCompletions ) {
         date = checkNull( date );
         completionTracker.setCompletions( date, numCompletions );
     }

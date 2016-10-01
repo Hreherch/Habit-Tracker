@@ -58,4 +58,19 @@ public class TestHabitList  extends TestCase {
         assertEquals( "testRemovingHabits: HabitList returns the wrong habit",
                        habit2, habitList.getHabit( habit2 ).getName() );
     }
+
+    boolean update = false;
+    public void testListenerUpdate() {
+        HabitList habitList = new HabitList();
+        Listener listen = new Listener() {
+            @Override
+            public void update() {
+                update = true;
+            }
+        };
+        habitList.addListener( listen );
+        habitList.addHabit( new Habit("meditate") );
+        assertTrue( "habitList listener saw update", update );
+
+    }
 }

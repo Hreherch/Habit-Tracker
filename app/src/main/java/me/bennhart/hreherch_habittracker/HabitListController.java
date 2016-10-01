@@ -1,5 +1,7 @@
 package me.bennhart.hreherch_habittracker;
 
+import java.util.ArrayList;
+
 /**
  * Created by Ben on 2016-09-26.
  */
@@ -22,6 +24,12 @@ public class HabitListController {
             return e.getMessage();
         }
         return null;
+    }
+
+    public void addCompletion( int position ) {
+        Habit habit = getHabitList().getHabits().get( position );
+        habit.addHabitCompletion( null );
+        getHabitList().notifyListeners();
     }
 
 }

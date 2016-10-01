@@ -20,7 +20,8 @@
         android:background="@color/colorPrimaryDark"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/frameLayout">
+        android:id="@+id/frameLayout"
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +39,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@+id/listView_ofHabits"
         android:layout_below="@+id/frameLayout"
         android:layout_centerHorizontal="true" />
 
