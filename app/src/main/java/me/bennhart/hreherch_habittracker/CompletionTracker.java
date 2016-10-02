@@ -142,4 +142,9 @@ public class CompletionTracker {
         int removeToday = (getCompletions( today.getString() ) > 0) ? 0 : -1;
         return getNumDaysTracked() - getNumDaysFulfilled() + removeToday;
     }
+
+    public String getCompletionRate() {
+        float temp = getNumDaysFulfilled() * 100 / getNumDaysTracked();
+        return String.format( Locale.getDefault(), "%.2f", temp );
+    }
 }

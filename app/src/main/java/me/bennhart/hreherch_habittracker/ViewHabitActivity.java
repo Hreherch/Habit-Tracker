@@ -17,6 +17,8 @@ import android.widget.ToggleButton;
 
 import org.w3c.dom.Text;
 
+import java.util.Locale;
+
 public class ViewHabitActivity extends AppCompatActivity {
 
     @Override
@@ -37,20 +39,29 @@ public class ViewHabitActivity extends AppCompatActivity {
             ToggleButton b = (ToggleButton) dotw_layout.getChildAt( i );
             b.setChecked( habit.isActiveOn( i ) );
         }
+
+        updateStats();
     }
 
     public void updateStats() {
-        TextView completionRate = (TextView) findViewById( R.id.textView_completionRate );
-        TextView numCompletions = (TextView) findViewById( R.id.textView_completionNum );
-        TextView numFulfilled = (TextView) findViewById( R.id.textView_fulfilledNum );
-        TextView numMissed = (TextView) findViewById( R.id.textView_missedNum );
+        TextView completionRateView = (TextView) findViewById( R.id.textView_completionRate );
+        TextView numCompletionsView = (TextView) findViewById( R.id.textView_completionNum );
+        TextView numFulfilledView = (TextView) findViewById( R.id.textView_fulfilledNum );
+        TextView numMissedView = (TextView) findViewById( R.id.textView_missedNum );
+
         HabitListController hlc = new HabitListController();
         Habit habit = hlc.getViewHabit();
+
         String compRate = habit.getCompletionRate() + "%";
-        completionRate.setText( compRate );
-        numCompletions.setText( habit.getNumTotalCompletions() );
-        numFulfilled.setText( habit.getNumDaysFulfilled() );
-        numMissed.setText( habit.getNumDaysMissed() );
+        String numComplete = String.format(Locale.getDefault(), "%d", habit.getNumTotalCompletions() );
+        String numFilled = String.format(Locale.getDefault(), "%d", habit.getNumDaysFulfilled() );
+        String numMiss = String.format(Locale.getDefault(), "%d", habit.getNumDaysMissed() );
+
+        // TODO daysMissed and fulfilled does not currently sync with daysActive, maybe intentional
+        completionRateView.setText( compRate );
+        numCompletionsView.setText( numComplete );
+        numFulfilledView.setText( numFilled );
+        numMissedView.setText( numMiss );
     }
 
     @Override

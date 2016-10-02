@@ -138,9 +138,8 @@ public class Habit implements Comparable<Habit> {
         }
     }
 
-    public float getCompletionRate() {
-        // TODO add test for method
-        return 0;
+    public String getCompletionRate() {
+        return completionTracker.getCompletionRate();
     }
 
     public int getNumTotalCompletions() {

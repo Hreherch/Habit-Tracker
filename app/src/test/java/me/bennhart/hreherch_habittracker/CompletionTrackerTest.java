@@ -186,4 +186,23 @@ public class CompletionTrackerTest extends TestCase {
                 0, otherTracker.getNumDaysMissed() );
     }
 
+    public void testGetCompletionRate() {
+        GetToday today = new GetToday();
+        CompletionTracker tracker = new CompletionTracker( today.getTodayPlus( -1 ) );
+
+        //System.out.println(tracker.getCompletionRate() );
+        assertTrue( "CompletionTracker should init with 0.00 completion rate",
+                    "0.00".equals( tracker.getCompletionRate() ) );
+
+        tracker.addCompletion( today.getTodayPlus( -1 ) );
+        //System.out.println(tracker.getCompletionRate() );
+        assertTrue( "CompletionTracker should have 50.00 completion rate with missed=1 fulfilled=1",
+                    "50.00".equals( tracker.getCompletionRate() ) );
+
+        tracker.addCompletion( today.getString() );
+        //System.out.println(tracker.getCompletionRate() );
+        assertTrue( "CompletionTracker should have 100.00 completion rate with missed=0 fulfilled=2",
+                "100.00".equals( tracker.getCompletionRate() ) );
+    }
+
 } // class CompletionTrackerTest
