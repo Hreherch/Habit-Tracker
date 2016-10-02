@@ -3,17 +3,9 @@ package me.bennhart.hreherch_habittracker;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Locale;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 /**
  * Created by Ben on 2016-09-22.
@@ -152,5 +144,25 @@ public class Habit implements Comparable<Habit> {
 
     public int getNumDaysMissed() {
         return completionTracker.getNumDaysMissed();
+    }
+
+    public void addListener( Listener newListener ) {
+        completionTracker.addListener( newListener );
+    }
+
+    public void notifyListeners() {
+        completionTracker.notifyListeners();
+    }
+
+    public int getNumListeners() {
+        return completionTracker.getNumListeners();
+    }
+
+    public void clearListeners() {
+        completionTracker.clearListeners();
+    }
+
+    public ArrayList<String> getAdaptableCompletionArray() {
+        return completionTracker.getAdaptableCompletionArray();
     }
 }

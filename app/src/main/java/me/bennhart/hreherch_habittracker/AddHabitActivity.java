@@ -64,6 +64,7 @@ public class AddHabitActivity extends AppCompatActivity {
         EditText editText_habitName = (EditText) findViewById( R.id.editText_habitName );
         String habitName = editText_habitName.getText().toString();
 
+        // TODO ensure date error checking
         EditText editText_date = (EditText) findViewById( R.id.editText_date );
 
         String error = "";

@@ -8,15 +8,23 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class ViewHabitActivity extends AppCompatActivity {
@@ -41,6 +49,67 @@ public class ViewHabitActivity extends AppCompatActivity {
         }
 
         updateStats();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateStats();
+
+        HabitListController hlc = new HabitListController();
+        final Habit habit = hlc.getViewHabit();
+
+        ListView completionListView = (ListView) findViewById( R.id.listView_ofCompletions );
+        final ArrayList<String> habitCompletionArray = habit.getAdaptableCompletionArray();
+        final ArrayAdapter<String> completionAdapter = new ArrayAdapter<String>( this,
+                                                                            android.R.layout.simple_list_item_1,
+                                                                            habitCompletionArray );
+        completionListView.setAdapter( completionAdapter );
+
+        habit.clearListeners();
+
+        habit.addListener(new Listener() {
+            @Override
+            public void update() {
+                habitCompletionArray.clear();
+                habitCompletionArray.addAll( habit.getAdaptableCompletionArray() );
+                completionAdapter.notifyDataSetChanged();
+            }
+        });
+
+        completionListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO http://stackoverflow.com/questions/27263008/alertdialog-with-numberpicker-rendered-incorrectly/27263520#27263520
+                AlertDialog.Builder adb = new AlertDialog.Builder( ViewHabitActivity.this );
+                String text = habitCompletionArray.get( position );
+                String[] textSplit = text.split( " " );
+                final String date = textSplit[0];
+                Integer completions = Integer.parseInt( textSplit[2] );
+                adb.setTitle( "Completions for: " + date );
+                final NumberPicker picker = new NumberPicker( ViewHabitActivity.this );
+                picker.setMinValue( 0 );
+                picker.setMaxValue( 50 + completions );
+                picker.setValue( completions );
+                picker.setWrapSelectorWheel( false );
+                FrameLayout frameParent = new FrameLayout( ViewHabitActivity.this );
+                frameParent.addView( picker, new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        Gravity.CENTER ));
+                adb.setView( frameParent );
+                adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        habit.setHabitCompletions( date, picker.getValue() );
+                        HabitListController.save();
+                        updateStats();
+                    }
+                });
+                adb.show();
+                return false;
+            }
+        });
     }
 
     public void updateStats() {
@@ -108,6 +177,7 @@ public class ViewHabitActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_resetHabit) {
+            // TODO reset habit functionality
             return true;
         }
 

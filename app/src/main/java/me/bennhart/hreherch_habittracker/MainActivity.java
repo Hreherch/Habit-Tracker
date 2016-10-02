@@ -20,6 +20,7 @@ package me.bennhart.hreherch_habittracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -36,6 +37,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setCheckedItem( R.id.nav_button_todo );
 
-        // update listViewa
+        // update listView
         ListView habitListView = (ListView) findViewById( R.id.listView_ofHabits );
         final HabitAdapter habitArrayAdapter;
         final ArrayList<Habit> list = new ArrayList<Habit>();
@@ -96,12 +98,17 @@ public class MainActivity extends AppCompatActivity
                                               habitList );
         habitListView.setAdapter( habitArrayAdapter );
 
+        HabitListController.getHabitList().clearListeners();
+
+        //Toast.makeText( MainActivity.this, "" + HabitListController.getHabitList().getNumListeners(), Toast.LENGTH_LONG ).show();
+
         HabitListController.getHabitList().addListener(new Listener() {
             @Override
             public void update() {
-                list.clear();
-                ArrayList<Habit> newList = HabitListController.getHabitList().getHabits();
-                list.addAll( newList );
+                // TODO why was this the same effect?
+//                list.clear();
+//                ArrayList<Habit> newList = HabitListController.getHabitList().getHabits();
+//                list.addAll( newList );
                 habitArrayAdapter.notifyDataSetChanged();
             }
         });
@@ -152,7 +159,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected( @NonNull MenuItem item) {
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();

@@ -92,8 +92,8 @@ public class HabitList {
         return habitList.size();
     }
 
-    public void addListener(Listener listen) {
-        listeners.add( listen );
+    public void addListener( Listener newListener ) {
+        listeners.add( newListener );
     }
 
     public void notifyListeners() {
@@ -110,4 +110,14 @@ public class HabitList {
         }
         notifyListeners();
     }
+
+    public int getNumListeners() {
+        return listeners.size();
+    }
+
+    public void clearListeners() {
+        listeners.clear();
+    }
+
+
 }

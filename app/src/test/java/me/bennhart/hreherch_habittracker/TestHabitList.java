@@ -60,7 +60,7 @@ public class TestHabitList  extends TestCase {
     }
 
     boolean update = false;
-    public void testListenerUpdate() {
+    public void testListenerUpdateOnAddHabit() {
         HabitList habitList = new HabitList();
         Listener listen = new Listener() {
             @Override
@@ -70,9 +70,9 @@ public class TestHabitList  extends TestCase {
         };
         habitList.addListener( listen );
         habitList.addHabit( new Habit("meditate") );
-        assertTrue( "habitList listener saw update", update );
-
+        assertTrue( "habitList listener saw update on add habit", update );
     }
+
 
     public void testOrderingHabits() {
         // order: b (true, 3) > a (true, 5) > d (false, 0) > c (false, 5)

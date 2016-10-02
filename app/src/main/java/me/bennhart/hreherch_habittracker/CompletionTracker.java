@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -15,7 +16,7 @@ public class CompletionTracker {
     private List<String> dates = new ArrayList<>();
     private List<Integer> completions = new ArrayList<>();
     private String startDate;
-    //private final String DATE_FORMAT = "yyyy-MM-dd";
+    private ArrayList<Listener> listeners = new ArrayList<>();
 
     public CompletionTracker( String date ) {
         date = date.trim();
@@ -67,6 +68,7 @@ public class CompletionTracker {
             int index = dates.indexOf( date );
             completions.add( index, 1 );
         }
+        notifyListeners();
     }
 
     // returns -1 if date is before start range or after today
@@ -100,6 +102,8 @@ public class CompletionTracker {
             addCompletion( date );
             completions.set( dates.indexOf( date ), numCompletions );
         }
+
+        notifyListeners();
     }
 
     // includes today as part of count
@@ -146,5 +150,35 @@ public class CompletionTracker {
     public String getCompletionRate() {
         float temp = getNumDaysFulfilled() * 100 / getNumDaysTracked();
         return String.format( Locale.getDefault(), "%.2f", temp );
+    }
+
+    public void addListener( Listener newListener ) {
+        listeners.add( newListener );
+    }
+
+    public void notifyListeners() {
+        for ( Listener listen : listeners ) {
+            listen.update();
+        }
+    }
+
+    public int getNumListeners() {
+        return listeners.size();
+    }
+
+    public void clearListeners() {
+        listeners.clear();
+    }
+
+    public ArrayList<String> getAdaptableCompletionArray() {
+        ArrayList<String> adaptableCompletionArray = new ArrayList<>();
+        GetToday today = new GetToday();
+        String date = today.getString();
+        adaptableCompletionArray.add( date + "\t Completions: " + getCompletions( date ) );
+        while ( date.compareTo(startDate) != 0 ) {
+            date = today.getDatePlus( date, -1 );
+            adaptableCompletionArray.add( date + " Completions: " + getCompletions( date ) );
+        }
+        return adaptableCompletionArray;
     }
 }

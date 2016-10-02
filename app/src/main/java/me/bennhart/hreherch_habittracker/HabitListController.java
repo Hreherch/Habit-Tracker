@@ -59,4 +59,8 @@ public class HabitListController {
     public void setHabitActives( String habitName, boolean[] newActiveList ) {
         getHabitList().setHabitActives( habitName, newActiveList );
     }
+
+    public static void save() {
+
+    }
 }
