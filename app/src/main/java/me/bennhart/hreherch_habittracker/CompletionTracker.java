@@ -101,4 +101,16 @@ public class CompletionTracker {
             completions.set( dates.indexOf( date ), numCompletions );
         }
     }
+
+    // includes today as part of count
+    public int getNumDaysTracked() {
+        GetToday today = new GetToday();
+        String date = startDate;
+        int days = 1;
+        while ( date.compareTo(today.getString()) != 0 ) {
+            date = today.getDatePlus( date, 1 );
+            days += 1;
+        }
+        return days;
+    }
 }

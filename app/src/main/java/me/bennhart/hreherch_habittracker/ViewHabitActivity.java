@@ -12,7 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import org.w3c.dom.Text;
 
 public class ViewHabitActivity extends AppCompatActivity {
 
@@ -34,6 +37,20 @@ public class ViewHabitActivity extends AppCompatActivity {
             ToggleButton b = (ToggleButton) dotw_layout.getChildAt( i );
             b.setChecked( habit.isActiveOn( i ) );
         }
+    }
+
+    public void updateStats() {
+        TextView completionRate = (TextView) findViewById( R.id.textView_completionRate );
+        TextView numCompletions = (TextView) findViewById( R.id.textView_completionNum );
+        TextView numFulfilled = (TextView) findViewById( R.id.textView_fulfilledNum );
+        TextView numMissed = (TextView) findViewById( R.id.textView_missedNum );
+        HabitListController hlc = new HabitListController();
+        Habit habit = hlc.getViewHabit();
+        String compRate = habit.getCompletionRate() + "%";
+        completionRate.setText( compRate );
+        numCompletions.setText( habit.getNumTotalCompletions() );
+        numFulfilled.setText( habit.getNumDaysFulfilled() );
+        numMissed.setText( habit.getNumDaysMissed() );
     }
 
     @Override
@@ -99,6 +116,7 @@ public class ViewHabitActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     HabitListController hbc = new HabitListController();
                     String newName = editText_habitName.getText().toString();
+                    // TODO need to error check inputs here (blank, same names)
                     hbc.setViewHabitName( newName );
                     if (actBar != null) {
                         actBar.setTitle(newName);

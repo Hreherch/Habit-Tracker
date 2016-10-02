@@ -137,4 +137,24 @@ public class Habit implements Comparable<Habit> {
             return -1;
         }
     }
+
+    public float getCompletionRate() {
+        // TODO add test for method
+        return 0;
+    }
+
+    public int getNumTotalCompletions() {
+        // TODO add test for method
+        return 0;
+    }
+
+    public int getNumDaysFulfilled() {
+        // TODO add test for method
+        return 0;
+    }
+
+    public int getNumDaysMissed() {
+        // TODO add test for method
+        return 0;
+    }
 }

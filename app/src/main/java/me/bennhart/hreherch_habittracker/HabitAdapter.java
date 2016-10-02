@@ -55,13 +55,16 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
                         completeButton.setImageResource( R.drawable.ic_priority_high_black );
                         completeButton.setBackgroundResource( R.color.colorActive );
                     } else { // numComplete > 0
-                        completeButton.setImageResource(R.drawable.ic_done_black);
+                        completeButton.setImageResource(R.drawable.ic_done_black );
+                        completeButton.setBackgroundResource( R.color.colorActive );
                     }
                 } else { // (habit is not active today)
                     if (numComplete <= 0) {
                         completeButton.setImageResource( R.drawable.ic_snooze_black );
+                        completeButton.setBackgroundResource( R.color.colorInactive );
                     } else { // numComplete > 0
-                        completeButton.setImageResource( R.drawable.ic_snooze_black );
+                        completeButton.setImageResource( R.drawable.ic_done_black );
+                        completeButton.setBackgroundResource( R.color.colorInactive );
                     }
                 }
 

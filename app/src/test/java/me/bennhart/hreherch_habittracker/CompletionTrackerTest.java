@@ -108,4 +108,18 @@ public class CompletionTrackerTest extends TestCase {
 
     } // testSettingCompletions
 
+    public void testGetNumDaysTracked() {
+        GetToday today = new GetToday();
+        CompletionTracker tracker = new CompletionTracker( today.getString() );
+
+        assertEquals( "testGetNumDaysTracked: Should return 1 on day one.",
+                      1, tracker.getNumDaysTracked() );
+
+        CompletionTracker secondTracker = new CompletionTracker( today.getTodayPlus( -1 ) );
+
+        assertEquals( "testGetNumDaysTracked: Should return 2 on day two.",
+                      2, secondTracker.getNumDaysTracked() );
+
+    }
+
 } // class CompletionTrackerTest
