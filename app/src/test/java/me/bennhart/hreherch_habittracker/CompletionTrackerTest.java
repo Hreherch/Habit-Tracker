@@ -142,4 +142,48 @@ public class CompletionTrackerTest extends TestCase {
                 5, tracker.getNumTotalCompletions() );
     }
 
+    public void testGetNumDaysFulfilled() {
+        GetToday today = new GetToday();
+        CompletionTracker tracker = new CompletionTracker( today.getTodayPlus( -7 ) );
+
+        assertEquals( "CompletionTracker should init with no days fulfilled",
+                0, tracker.getNumDaysFulfilled() );
+
+        tracker.addCompletion( today.getTodayPlus( -4 ) );
+        assertEquals( "CompletionTracker did not update fulfilled days after adding completion",
+                1, tracker.getNumDaysFulfilled() );
+
+        tracker.setCompletions( today.getTodayPlus( -5 ), 3 );
+        assertEquals( "CompletionTracker did not update fulfilled days after setting completion",
+                2, tracker.getNumDaysFulfilled() );
+
+        tracker.setCompletions( today.getTodayPlus( -5 ), 0 );
+        assertEquals( "CompletionTracker a fulfillment account for days with 0 completions",
+                1, tracker.getNumDaysFulfilled() );
+    }
+
+    public void testGetNumDaysMissed() {
+        GetToday today = new GetToday();
+        CompletionTracker tracker = new CompletionTracker( today.getString() );
+
+        assertEquals( "CompletionTracker should init with no days missed (if started today)",
+                      0, tracker.getNumDaysMissed() );
+
+        tracker.addCompletion( today.getString() );
+        assertEquals( "CompletionTracker should return 0 missed if today=startDay and completions>0",
+                      0, tracker.getNumDaysMissed() );
+
+        CompletionTracker otherTracker = new CompletionTracker( today.getTodayPlus( -1 ) );
+        assertEquals( "CompletionTracker should init with 1 days missed (if started yesterday)",
+                      1, otherTracker.getNumDaysMissed() );
+
+        otherTracker.addCompletion( today.getString() );
+        assertEquals( "CompletionTracker should have missed=1 if start=yesterday and todayCompletions>0",
+                1, otherTracker.getNumDaysMissed() );
+
+        otherTracker.addCompletion( today.getTodayPlus( -1 ) );
+        assertEquals( "CompletionTracker should have missed=1 if all days have completions",
+                0, otherTracker.getNumDaysMissed() );
+    }
+
 } // class CompletionTrackerTest

@@ -121,4 +121,25 @@ public class CompletionTracker {
         }
         return completes;
     }
+
+    public int getNumDaysFulfilled() {
+        Integer fulfilled = 0;
+        for ( Integer numComplete : completions ) {
+            if ( numComplete > 0 ) {
+                fulfilled += 1;
+            }
+        }
+        return fulfilled;
+    }
+
+    public int getNumDaysMissed() {
+        GetToday today = new GetToday();
+        // return 0 if started today.
+        if ( startDate.equals( today.getString() ) ) {
+            return 0;
+        }
+        // remove a day if it has completions (it gets counted in days fulfilled)
+        int removeToday = (getCompletions( today.getString() ) > 0) ? 0 : -1;
+        return getNumDaysTracked() - getNumDaysFulfilled() + removeToday;
+    }
 }
