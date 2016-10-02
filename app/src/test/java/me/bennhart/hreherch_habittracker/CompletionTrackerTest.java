@@ -122,4 +122,24 @@ public class CompletionTrackerTest extends TestCase {
 
     }
 
+    public void testGetNumTotalCompletions() {
+        GetToday today = new GetToday();
+        CompletionTracker tracker = new CompletionTracker( today.getTodayPlus( -7 ) );
+
+        assertEquals( "CompletionTracker should init with 0 total completions",
+                      0, tracker.getNumTotalCompletions() );
+
+        tracker.addCompletion( today.getString() );
+        assertEquals( "CompletionTracker did not add a completion to the total.",
+                      1, tracker.getNumTotalCompletions() );
+
+        tracker.setCompletions( today.getTodayPlus( -4 ), 5 );
+        assertEquals( "CompletionTracker did not add a set completion to the total.",
+                6, tracker.getNumTotalCompletions() );
+
+        tracker.setCompletions( today.getString(), 0 );
+        assertEquals( "CompletionTracker did allow removal of completion to update the total.",
+                5, tracker.getNumTotalCompletions() );
+    }
+
 } // class CompletionTrackerTest

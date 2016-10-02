@@ -144,8 +144,7 @@ public class Habit implements Comparable<Habit> {
     }
 
     public int getNumTotalCompletions() {
-        // TODO add test for method
-        return 0;
+        return completionTracker.getNumTotalCompletions();
     }
 
     public int getNumDaysFulfilled() {

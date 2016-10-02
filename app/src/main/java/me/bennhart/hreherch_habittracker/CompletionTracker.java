@@ -113,4 +113,12 @@ public class CompletionTracker {
         }
         return days;
     }
+
+    public int getNumTotalCompletions() {
+        Integer completes = 0;
+        for ( Integer numComplete : completions ) {
+            completes += numComplete;
+        }
+        return completes;
+    }
 }
