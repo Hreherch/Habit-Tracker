@@ -79,7 +79,7 @@ public class ViewHabitActivity extends AppCompatActivity {
 
         completionListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(final AdapterView<?> parent, View view, int position, long id) {
                 // TODO http://stackoverflow.com/questions/27263008/alertdialog-with-numberpicker-rendered-incorrectly/27263520#27263520
                 AlertDialog.Builder adb = new AlertDialog.Builder( ViewHabitActivity.this );
                 String text = habitCompletionArray.get( position );

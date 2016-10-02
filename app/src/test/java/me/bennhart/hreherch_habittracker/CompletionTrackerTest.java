@@ -190,6 +190,8 @@ public class CompletionTrackerTest extends TestCase {
         GetToday today = new GetToday();
         CompletionTracker tracker = new CompletionTracker( today.getTodayPlus( -1 ) );
 
+        // TODO ensure .00 granularity
+
         //System.out.println(tracker.getCompletionRate() );
         assertTrue( "CompletionTracker should init with 0.00 completion rate",
                     "0.00".equals( tracker.getCompletionRate() ) );

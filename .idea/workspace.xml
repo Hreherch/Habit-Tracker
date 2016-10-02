@@ -55,6 +55,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b778ee6a-e2d2-4a36-a542-1f4b9b99285f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_7.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -62,21 +63,16 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugUnitTestJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugUnitTestJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugUnitTestJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugUnitTestJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugUnitTestJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugUnitTestJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/AddHabitActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/AddHabitActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/CompletionTracker.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/CompletionTracker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/Habit.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/Habit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitList.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitListController.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitListController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/Listener.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/Listener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/ViewHabitActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/ViewHabitActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_habit.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_habit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/TestHabitList.java" afterPath="$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/TestHabitList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/CompletionTrackerTest.java" afterPath="$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/CompletionTrackerTest.java" />
     </list>
     <ignored path="as1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,40 +97,50 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="124" column="11" selection-start-line="115" selection-start-column="8" selection-end-line="124" selection-end-column="11" />
+              <caret line="64" column="48" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
               <folding>
-                <element signature="e#2622#2653#0" expanded="true" />
-                <element signature="e#2655#2687#0" expanded="true" />
-                <element signature="e#3757#3764#0" expanded="true" />
-                <element signature="e#4295#4671#0" expanded="true" />
-                <element signature="e#4670#4671#0" expanded="true" />
-                <element signature="e#4724#5223#0" expanded="true" />
-                <element signature="e#5222#5223#0" expanded="true" />
+                <element signature="e#3110#3141#0" expanded="true" />
+                <element signature="e#3143#3175#0" expanded="true" />
+                <element signature="e#4245#4252#0" expanded="true" />
+                <element signature="e#4783#5159#0" expanded="true" />
+                <element signature="e#5158#5159#0" expanded="true" />
+                <element signature="e#5212#5711#0" expanded="true" />
+                <element signature="e#5710#5711#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewHabitActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ViewHabitActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/ViewHabitActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5047801">
-              <caret line="178" column="43" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="108" column="27" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="27" />
               <folding>
                 <element signature="e#2164#2172#0" expanded="true" />
                 <element signature="e#2513#2798#0" expanded="true" />
                 <element signature="e#2797#2798#0" expanded="true" />
-                <element signature="e#2856#4703#0" expanded="true" />
-                <element signature="e#4264#4619#0" expanded="true" />
-                <element signature="e#4618#4619#0" expanded="true" />
-                <element signature="e#4702#4703#0" expanded="true" />
-                <element signature="e#8382#8950#0" expanded="true" />
-                <element signature="e#8949#8950#0" expanded="true" />
-                <element signature="e#9296#9628#0" expanded="true" />
-                <element signature="e#9627#9628#0" expanded="true" />
-                <element signature="e#9675#9872#0" expanded="true" />
-                <element signature="e#9871#9872#0" expanded="true" />
+                <element signature="e#2856#4709#0" expanded="true" />
+                <element signature="e#4270#4625#0" expanded="true" />
+                <element signature="e#4624#4625#0" expanded="true" />
+                <element signature="e#4708#4709#0" expanded="true" />
+                <element signature="e#8388#8956#0" expanded="true" />
+                <element signature="e#8955#8956#0" expanded="true" />
+                <element signature="e#9302#9634#0" expanded="true" />
+                <element signature="e#9633#9634#0" expanded="true" />
+                <element signature="e#9681#9878#0" expanded="true" />
+                <element signature="e#9877#9878#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CompletionTrackerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/CompletionTrackerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="192" column="38" selection-start-line="192" selection-start-column="38" selection-end-line="192" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -152,13 +158,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HabitListController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HabitListController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitListController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.33652008">
+              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1152#1153#0" expanded="true" />
+                <element signature="e#1189#1190#0" expanded="true" />
+                <element signature="e#2697#2698#0" expanded="true" />
+                <element signature="e#2731#2732#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1639,7 +1648,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4423451769965" />
+        <entry key="$PROJECT_DIR$" value="4424408575378" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1819,6 +1828,7 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/abego/treelayout/org.abego.treelayout.core/1.0.1/org.abego.treelayout.core-1.0.1.jar" />
                             <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/24.2.1/appcompat-v7-24.2.1.aar" />
                             <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/design/24.2.1/design-24.2.1.aar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar" />
                             <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-v4/24.2.1/support-v4-24.2.1.aar" />
                             <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-vector-drawable/24.2.1/support-vector-drawable-24.2.1.aar" />
                             <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/animated-vector-drawable/24.2.1/animated-vector-drawable-24.2.1.aar" />
@@ -2002,18 +2012,18 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_habit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/habitlist_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/CompletionTrackerTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/Listener.java" />
         <option value="$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/TestHabitList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/Listenable.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/Habit.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/AddHabitActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_habit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/CompletionTracker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitListController.java" />
+        <option value="$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/CompletionTrackerTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/ViewHabitActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitListController.java" />
       </list>
     </option>
   </component>
@@ -2235,78 +2245,6 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="as1" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="as1" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="as1" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="as1" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2379,6 +2317,8 @@
     <property name="device.picker.selection" value="ce051605d2a7060504" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Ben/Documents/GitHub/as1/app/src/main/java/me/bennhart/hreherch_habittracker/HabitList.java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../lonelyTwitter" />
+    <property name="android.project.structure.last.selected" value="app" />
+    <property name="android.project.structure.proportion" value="0.15" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -3273,30 +3213,12 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/CompletionTrackerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="203" column="99" selection-start-line="203" selection-start-column="99" selection-end-line="203" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/TestHabitList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
           <folding>
             <element signature="e#2304#2305#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="116" selection-start-line="30" selection-start-column="116" selection-end-line="30" selection-end-column="116" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3347,6 +3269,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_habit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-44.846153">
+          <caret line="192" column="37" selection-start-line="192" selection-start-column="37" selection-end-line="192" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/me/bennhart/hreherch_habittracker/CompletionTrackerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="192" column="38" selection-start-line="192" selection-start-column="38" selection-end-line="192" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3363,61 +3304,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="124" column="11" selection-start-line="115" selection-start-column="8" selection-end-line="124" selection-end-column="11" />
-          <folding>
-            <element signature="e#2622#2653#0" expanded="true" />
-            <element signature="e#2655#2687#0" expanded="true" />
-            <element signature="e#3757#3764#0" expanded="true" />
-            <element signature="e#4295#4671#0" expanded="true" />
-            <element signature="e#4670#4671#0" expanded="true" />
-            <element signature="e#4724#5223#0" expanded="true" />
-            <element signature="e#5222#5223#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitListController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+          <caret line="30" column="116" selection-start-line="30" selection-start-column="116" selection-end-line="30" selection-end-column="116" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_habit.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-44.846153">
-          <caret line="192" column="37" selection-start-line="192" selection-start-column="37" selection-end-line="192" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/ViewHabitActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5047801">
-          <caret line="178" column="43" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="27" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="27" />
           <folding>
             <element signature="e#2164#2172#0" expanded="true" />
             <element signature="e#2513#2798#0" expanded="true" />
             <element signature="e#2797#2798#0" expanded="true" />
-            <element signature="e#2856#4703#0" expanded="true" />
-            <element signature="e#4264#4619#0" expanded="true" />
-            <element signature="e#4618#4619#0" expanded="true" />
-            <element signature="e#4702#4703#0" expanded="true" />
-            <element signature="e#8382#8950#0" expanded="true" />
-            <element signature="e#8949#8950#0" expanded="true" />
-            <element signature="e#9296#9628#0" expanded="true" />
-            <element signature="e#9627#9628#0" expanded="true" />
-            <element signature="e#9675#9872#0" expanded="true" />
-            <element signature="e#9871#9872#0" expanded="true" />
+            <element signature="e#2856#4709#0" expanded="true" />
+            <element signature="e#4270#4625#0" expanded="true" />
+            <element signature="e#4624#4625#0" expanded="true" />
+            <element signature="e#4708#4709#0" expanded="true" />
+            <element signature="e#8388#8956#0" expanded="true" />
+            <element signature="e#8955#8956#0" expanded="true" />
+            <element signature="e#9302#9634#0" expanded="true" />
+            <element signature="e#9633#9634#0" expanded="true" />
+            <element signature="e#9681#9878#0" expanded="true" />
+            <element signature="e#9877#9878#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="48" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
+          <folding>
+            <element signature="e#3110#3141#0" expanded="true" />
+            <element signature="e#3143#3175#0" expanded="true" />
+            <element signature="e#4245#4252#0" expanded="true" />
+            <element signature="e#4783#5159#0" expanded="true" />
+            <element signature="e#5158#5159#0" expanded="true" />
+            <element signature="e#5212#5711#0" expanded="true" />
+            <element signature="e#5710#5711#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/me/bennhart/hreherch_habittracker/HabitListController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33652008">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <folding>
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1189#1190#0" expanded="true" />
+            <element signature="e#2697#2698#0" expanded="true" />
+            <element signature="e#2731#2732#0" expanded="true" />
           </folding>
         </state>
       </provider>
