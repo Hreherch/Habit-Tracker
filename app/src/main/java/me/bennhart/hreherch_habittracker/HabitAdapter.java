@@ -70,7 +70,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
                     public void onClick(View v) {
                         int position = (Integer) v.getTag();
                         HabitListController habitListController = new HabitListController();
-                        habitListController.addCompletion( position );
+                        habitListController.addCompletionToday( position );
                     }
                 });
 

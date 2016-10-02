@@ -73,4 +73,56 @@ public class TestHabitList  extends TestCase {
         assertTrue( "habitList listener saw update", update );
 
     }
+
+    public void testOrderingHabits() {
+        // order: b (true, 3) > a (true, 5) > d (false, 0) > c (false, 5)
+        boolean[] dotwList = { true, true, true, true, true, true, true };
+        Habit a = new Habit( "a" );
+        a.setActive( dotwList );
+        a.setHabitCompletions( null, 5 );
+
+        Habit b = new Habit( "b" );
+        b.setActive( dotwList );
+        b.setHabitCompletions( null, 3 );
+
+        Habit c = new Habit( "c" );
+        c.setHabitCompletions( null, 5 );
+
+        Habit d = new Habit( "d" );
+
+        HabitList habitList = new HabitList();
+        habitList.addHabit( a );
+        habitList.addHabit( b );
+        habitList.addHabit( c );
+        habitList.addHabit( d );
+
+        System.out.println( habitList.getHabits().get( 0 ).getName() +
+                habitList.getHabits().get( 1 ).getName() +
+                habitList.getHabits().get( 2 ).getName() +
+                habitList.getHabits().get( 3 ).getName());
+
+        assertEquals( "HabitList failed to order as expected",
+                      b.getName(), habitList.getHabits().get( 0 ).getName() );
+
+        assertEquals( "HabitList failed to order as expected",
+                      a.getName(), habitList.getHabits().get( 1 ).getName() );
+
+        assertEquals( "HabitList failed to order as expected",
+                      d.getName(), habitList.getHabits().get( 2 ).getName() );
+
+        assertEquals( "HabitList failed to order as expected",
+                      c.getName(), habitList.getHabits().get( 3 ).getName() );
+    }
+
+    public void testChangeHabitName() {
+        String habitName = "myHabit";
+        String newHabitName = "newHabit";
+        Habit aHabit = new Habit( habitName );
+        HabitList habitList = new HabitList();
+        habitList.addHabit( aHabit );
+        habitList.setHabitName( habitName, newHabitName );
+
+        assertEquals( "HabitList did not set new name to habit",
+                      newHabitName, habitList.getHabits().get(0).getName() );
+    }
 }

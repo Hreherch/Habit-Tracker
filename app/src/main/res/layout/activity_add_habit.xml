@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:imeOptions="actionDone"
-        android:maxLength="25"
+        android:maxLength="20"
         android:gravity="start"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text=""

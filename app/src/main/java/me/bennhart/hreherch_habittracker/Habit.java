@@ -1,5 +1,6 @@
 package me.bennhart.hreherch_habittracker;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.text.DateFormat;
@@ -17,7 +18,7 @@ import java.util.Locale;
 /**
  * Created by Ben on 2016-09-22.
  */
-public class Habit {
+public class Habit implements Comparable<Habit> {
     private String name;
     private CompletionTracker completionTracker;
     private boolean[] daysActiveList = { false, false, false, false, false, false, false };
@@ -119,4 +120,21 @@ public class Habit {
         return isActiveOn( dotw );
     }
 
+    @Override
+    public int compareTo( @NonNull Habit habit ) {
+        // return positive if this > that
+        // return negative if this < that
+        int completions = this.getHabitCompletions( null ) - habit.getHabitCompletions( null );
+        if ( this.isActiveToday() && habit.isActiveToday() ) {
+            return (completions < 0) ? -1 : 1;
+        }
+        else if ( !this.isActiveToday() && !habit.isActiveToday() ) {
+            return (completions < 0) ? -1 : 1;
+        }
+        else if ( !this.isActiveToday() && habit.isActiveToday() ) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }

@@ -31,6 +31,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -102,6 +103,17 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<Habit> newList = HabitListController.getHabitList().getHabits();
                 list.addAll( newList );
                 habitArrayAdapter.notifyDataSetChanged();
+            }
+        });
+
+        habitListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                HabitListController habitListController = new HabitListController();
+                habitListController.setViewHabit( position );
+                Intent intent = new Intent( MainActivity.this, ViewHabitActivity.class );
+                startActivity( intent );
+                return false;
             }
         });
     }

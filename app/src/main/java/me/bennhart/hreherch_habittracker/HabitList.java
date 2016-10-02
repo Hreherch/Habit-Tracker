@@ -1,8 +1,10 @@
 package me.bennhart.hreherch_habittracker;
 
 import android.net.sip.SipAudioCall;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Ben on 2016-09-23.
@@ -28,6 +30,8 @@ public class HabitList {
         }
         habitList.add( habit );
         habitNames.add( habit.getName() );
+        Collections.sort( habitList );
+        notifyListeners();
     }
 
     public void removeHabit( String habitName ) {
@@ -35,10 +39,17 @@ public class HabitList {
             throw new IllegalArgumentException( "You may not remove a habit not in the HabitList" );
         }
 
-        int index = habitNames.indexOf( habitName );
+        Habit removeHabit = null;
 
-        habitNames.remove( index );
-        habitList.remove( index );
+        habitNames.remove( habitName );
+        for ( Habit habit : habitList ) {
+            if ( habit.getName().equals( habitName ) ) {
+                removeHabit = habit;
+            }
+        }
+        habitList.remove( removeHabit );
+        Collections.sort( habitList );
+        notifyListeners();
     }
 
     public Habit getHabit( String habitName ) {
@@ -46,7 +57,35 @@ public class HabitList {
             return null;
         }
 
-        return habitList.get( habitNames.indexOf( habitName ) );
+        for ( Habit habit : habitList ) {
+            if ( habit.getName().equals( habitName ) ) {
+                return habit;
+            }
+        }
+        return null;
+    }
+
+    public void addHabitCompletion( String habitName ) {
+        Habit habit = getHabit( habitName );
+        if ( habitName == null ) {
+            throw new RuntimeException( "Habit name not in HabitList" );
+        }
+        habit.addHabitCompletion( null );
+        Collections.sort( habitList );
+        notifyListeners();
+    }
+
+    public void setHabitName( String oldName, String newName ) {
+        habitNames.remove( oldName );
+        habitNames.add( newName );
+
+        for ( Habit habit : habitList ) {
+            if ( habit.getName().equals( oldName ) ) {
+                habit.setName( newName );
+            }
+        }
+
+        notifyListeners();
     }
 
     public int getSize() {
@@ -61,5 +100,14 @@ public class HabitList {
         for ( Listener listen : listeners ) {
             listen.update();
         }
+    }
+
+    public void setHabitActives(String habitName, boolean[] newActiveList) {
+        for ( Habit habit : habitList ) {
+            if ( habit.getName().equals( habitName ) ) {
+                habit.setActive( newActiveList );
+            }
+        }
+        notifyListeners();
     }
 }

@@ -1,5 +1,7 @@
 package me.bennhart.hreherch_habittracker;
 
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 
 /**
@@ -7,6 +9,7 @@ import java.util.ArrayList;
  */
 public class HabitListController {
     private static HabitList habitList = null;
+    private static Integer viewHabit = null;
 
     public static HabitList getHabitList() {
         if ( habitList == null ) {
@@ -26,10 +29,34 @@ public class HabitListController {
         return null;
     }
 
-    public void addCompletion( int position ) {
-        Habit habit = getHabitList().getHabits().get( position );
-        habit.addHabitCompletion( null );
-        getHabitList().notifyListeners();
+    public void addCompletionToday( int position ) {
+        addCompletionToday( getHabitList().getHabits().get( position ).getName() );
     }
 
+    public void addCompletionToday( String habitName ) {
+        getHabitList().addHabitCompletion( habitName );
+    }
+
+    public void removeHabit( String habitName ) {
+        getHabitList().removeHabit( habitName );
+    }
+
+    public void setViewHabit( @Nullable Integer index ) {
+        viewHabit = index;
+    }
+
+    public Habit getViewHabit() {
+        if (viewHabit == null) {
+            throw new RuntimeException( "viewHabit was not set properly." );
+        }
+        return HabitListController.getHabitList().getHabits().get( viewHabit );
+    }
+
+    public void setViewHabitName( String newHabitName ) {
+        getHabitList().setHabitName( getViewHabit().getName(), newHabitName );
+    }
+
+    public void setHabitActives( String habitName, boolean[] newActiveList ) {
+        getHabitList().setHabitActives( habitName, newActiveList );
+    }
 }

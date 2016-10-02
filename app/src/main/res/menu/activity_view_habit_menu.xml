@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    <item
+        android:id="@+id/action_deleteHabit"
+        android:orderInCategory="100"
+        android:title="@string/action_deleteHabit"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_resetHabit"
+        android:orderInCategory="100"
+        android:title="@string/action_resetHabit"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_editName"
+        android:orderInCategory="100"
+        android:title="@string/action_editName"
+        app:showAsAction="never" />
+
+
+</menu>
