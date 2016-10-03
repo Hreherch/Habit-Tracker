@@ -1,6 +1,3 @@
-package me.bennhart.hreherch_habittracker;
-
-//        HabitTracker: a simple android to-do list/habit tracker application.
 //        Copyright (C) 2016 Bennett Hreherchuk hreherch@ualberta.ca
 //
 //        This program is free software: you can redistribute it and/or modify
@@ -15,6 +12,8 @@ package me.bennhart.hreherch_habittracker;
 //
 //        You should have received a copy of the GNU General Public License
 //        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+package me.bennhart.hreherch_habittracker;
 
 /**
  * Created by Ben on 2016-09-30.

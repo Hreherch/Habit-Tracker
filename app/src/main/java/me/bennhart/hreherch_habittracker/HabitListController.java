@@ -1,6 +1,3 @@
-package me.bennhart.hreherch_habittracker;
-
-//        HabitTracker: a simple android to-do list/habit tracker application.
 //        Copyright (C) 2016 Bennett Hreherchuk hreherch@ualberta.ca
 //
 //        This program is free software: you can redistribute it and/or modify
@@ -16,6 +13,8 @@ package me.bennhart.hreherch_habittracker;
 //        You should have received a copy of the GNU General Public License
 //        along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+package me.bennhart.hreherch_habittracker;
+
 import android.support.annotation.Nullable;
 
 /**
@@ -28,22 +27,22 @@ public class HabitListController {
     private static MainActivity saveContext = null;
 
     public static HabitList getHabitList() {
-        if ( habitList == null ) {
+        if (habitList == null) {
             habitList = new HabitList();
         }
         return habitList;
     }
 
-    public static void setHabitList( HabitList newHabitList ) {
+    public static void setHabitList(HabitList newHabitList) {
         habitList = newHabitList;
         save();
     }
 
-    public static void setSaveContext( MainActivity context ) {
+    public static void setSaveContext(MainActivity context) {
         saveContext = context;
     }
 
-    public String addHabit( String habitName, String date, boolean[] listOfActiveDays ) {
+    public String addHabit(String habitName, String date, boolean[] listOfActiveDays) {
         try {
             Habit newHabit = new Habit(habitName, date);
             newHabit.setActive(listOfActiveDays);
@@ -55,39 +54,39 @@ public class HabitListController {
         return null;
     }
 
-    public void addCompletionToday( int position ) {
-        addCompletionToday( getHabitList().getHabits().get( position ).getName() );
+    public void addCompletionToday(int position) {
+        addCompletionToday(getHabitList().getHabits().get(position).getName());
         save();
     }
 
-    public void addCompletionToday( String habitName ) {
-        getHabitList().addHabitCompletion( habitName );
+    public void addCompletionToday(String habitName) {
+        getHabitList().addHabitCompletion(habitName);
         save();
     }
 
-    public void removeHabit( String habitName ) {
-        getHabitList().removeHabit( habitName );
+    public void removeHabit(String habitName) {
+        getHabitList().removeHabit(habitName);
         save();
     }
 
-    public void setViewHabit( @Nullable Integer index ) {
+    public void setViewHabit(@Nullable Integer index) {
         viewHabit = index;
     }
 
     public Habit getViewHabit() {
         if (viewHabit == null) {
-            throw new RuntimeException( "viewHabit was not set properly." );
+            throw new RuntimeException("viewHabit was not set properly.");
         }
-        return HabitListController.getHabitList().getHabits().get( viewHabit );
+        return HabitListController.getHabitList().getHabits().get(viewHabit);
     }
 
-    public void setViewHabitName( String newHabitName ) {
-        getHabitList().setHabitName( getViewHabit().getName(), newHabitName );
+    public void setViewHabitName(String newHabitName) {
+        getHabitList().setHabitName(getViewHabit().getName(), newHabitName);
         save();
     }
 
-    public void setHabitActives( String habitName, boolean[] newActiveList ) {
-        getHabitList().setHabitActives( habitName, newActiveList );
+    public void setHabitActives(String habitName, boolean[] newActiveList) {
+        getHabitList().setHabitActives(habitName, newActiveList);
         save();
     }
 

@@ -17,7 +17,7 @@
         android:layout_rowSpan="2"
         android:src="@drawable/ic_snooze_black"
         android:tint="@color/black"
-        android:background="@color/colorInactive"/>
+        android:background="@color/colorInactive" />
 
     <TextView
         android:layout_width="275dp"
@@ -31,7 +31,7 @@
         android:id="@+id/textView_habitName"
         android:layout_row="0"
         android:layout_column="1"
-        android:layout_columnSpan="2"/>
+        android:layout_columnSpan="2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
         android:layout_column="2"
         android:layout_marginBottom="5dp"
         android:layout_gravity="center_horizontal"
-        android:weightSum="7" >
+        android:weightSum="7">
 
         <TextView
             android:id="@+id/textView_sun"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/colorInactive"
-            android:text="@string/short_sunday"/>
+            android:text="@string/short_sunday" />
 
         <TextView
             android:id="@+id/textView_mon"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/colorInactive"
-            android:text="@string/short_monday"/>
+            android:text="@string/short_monday" />
 
         <TextView
             android:id="@+id/textView_tue"
@@ -80,7 +80,7 @@
             android:textSize="25sp"
             android:layout_marginEnd="-5dp"
             android:textColor="@color/colorInactive"
-            android:text="@string/short_tuesday"/>
+            android:text="@string/short_tuesday" />
 
         <TextView
             android:id="@+id/textView_wed"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/colorInactive"
-            android:text="@string/short_wednesday"/>
+            android:text="@string/short_wednesday" />
 
         <TextView
             android:id="@+id/textView_thu"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/colorInactive"
-            android:text="@string/short_thursday"/>
+            android:text="@string/short_thursday" />
 
         <TextView
             android:id="@+id/textView_fri"
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/colorInactive"
-            android:text="@string/short_friday"/>
+            android:text="@string/short_friday" />
 
         <TextView
             android:id="@+id/textView_sat"
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/colorInactive"
-            android:text="@string/short_saturday"/>
+            android:text="@string/short_saturday" />
 
 
     </LinearLayout>

@@ -1,20 +1,13 @@
 package me.bennhart.hreherch_habittracker;
 
-import android.app.DatePickerDialog;
-
 import junit.framework.TestCase;
-import org.junit.Test;
 
 import java.text.DateFormat;
-import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by Ben on 2016-09-22.
@@ -205,13 +198,13 @@ public class HabitTest extends TestCase {
     // Test that isActiveToday gets the right day of the week
     public void testActiveToday() {
         GregorianCalendar calendar = new GregorianCalendar();
-        DateFormat formatter = new SimpleDateFormat( "EEE", Locale.getDefault() );
-        Habit myHabit = new Habit( "aHabit" );
+        DateFormat formatter = new SimpleDateFormat("EEE", Locale.getDefault());
+        Habit myHabit = new Habit("aHabit");
         int dotw = -1;
 
-        String day = formatter.format( calendar.getTime() );
-        System.out.print( day );
-        switch( day )  {
+        String day = formatter.format(calendar.getTime());
+        System.out.print(day);
+        switch (day) {
             case "Sun":
                 dotw = myHabit.SUN;
                 break;
@@ -235,28 +228,28 @@ public class HabitTest extends TestCase {
                 break;
         }
 
-        myHabit.setActive( dotw, true );
-        assertTrue( "testActiveToday: habit should be active",
-                    myHabit.isActiveToday() );
+        myHabit.setActive(dotw, true);
+        assertTrue("testActiveToday: habit should be active",
+                myHabit.isActiveToday());
     }
 
     // Test that set active( day, bool ) correctly sets that day.
     public void testSetActive() {
-        Habit myHabit = new Habit( "helpme" );
+        Habit myHabit = new Habit("helpme");
 
-        myHabit.setActive( myHabit.MON, true );
+        myHabit.setActive(myHabit.MON, true);
 
-        assertTrue( "testSetActive: Mondays were set active.",
-                     myHabit.isActiveOn( myHabit.MON ) );
+        assertTrue("testSetActive: Mondays were set active.",
+                myHabit.isActiveOn(myHabit.MON));
     }
 
     public void testWrongDates() {
         String date = "2016-09-00";
         try {
-            Habit myHabit = new Habit("why?", date );
-            assertTrue( "Habit should throw error on dates like 2016-09-00", false );
-        } catch ( Exception e ) {
-            assertTrue( true );
+            Habit myHabit = new Habit("why?", date);
+            assertTrue("Habit should throw error on dates like 2016-09-00", false);
+        } catch (Exception e) {
+            assertTrue(true);
         }
     }
 }

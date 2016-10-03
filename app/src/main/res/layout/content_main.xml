@@ -33,7 +33,7 @@
             android:textSize="35sp"
             android:layout_marginLeft="10dp"
             android:layout_gravity="bottom"
-            android:textColor="@color/colorActive"/>
+            android:textColor="@color/colorActive" />
     </FrameLayout>
 
     <ListView

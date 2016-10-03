@@ -1,6 +1,3 @@
-package me.bennhart.hreherch_habittracker;
-
-//        HabitTracker: a simple android to-do list/habit tracker application.
 //        Copyright (C) 2016 Bennett Hreherchuk hreherch@ualberta.ca
 //
 //        This program is free software: you can redistribute it and/or modify
@@ -15,6 +12,8 @@ package me.bennhart.hreherch_habittracker;
 //
 //        You should have received a copy of the GNU General Public License
 //        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+package me.bennhart.hreherch_habittracker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,64 +36,70 @@ public class HabitList {
         return habitList;
     }
 
-    public void addHabit( Habit habit ) {
-        if ( habitNames.contains( habit.getName() ) ) {
-            throw new IllegalArgumentException( "You may not have two habits with the same name." );
+    public void addHabit(Habit habit) {
+        if (habitNames.contains(habit.getName())) {
+            throw new IllegalArgumentException("You may not have two habits with the same name.");
         }
-        habitList.add( habit );
-        habitNames.add( habit.getName() );
-        Collections.sort( habitList );
+        habitList.add(habit);
+        habitNames.add(habit.getName());
+        Collections.sort(habitList);
         notifyListeners();
     }
 
-    public void removeHabit( String habitName ) {
-        if ( !( habitNames.contains( habitName ) ) ) {
-            throw new IllegalArgumentException( "You may not remove a habit not in the HabitList" );
+    public void removeHabit(String habitName) {
+        if (!(habitNames.contains(habitName))) {
+            throw new IllegalArgumentException("You may not remove a habit not in the HabitList");
         }
 
         Habit removeHabit = null;
 
-        habitNames.remove( habitName );
-        for ( Habit habit : habitList ) {
-            if ( habit.getName().equals( habitName ) ) {
+        habitNames.remove(habitName);
+        for (Habit habit : habitList) {
+            if (habit.getName().equals(habitName)) {
                 removeHabit = habit;
             }
         }
-        habitList.remove( removeHabit );
-        Collections.sort( habitList );
+        habitList.remove(removeHabit);
+        Collections.sort(habitList);
         notifyListeners();
     }
 
-    public Habit getHabit( String habitName ) {
-        if ( !( habitNames.contains( habitName ) ) ) {
+    public Habit getHabit(String habitName) {
+        if (!(habitNames.contains(habitName))) {
             return null;
         }
 
-        for ( Habit habit : habitList ) {
-            if ( habit.getName().equals( habitName ) ) {
+        for (Habit habit : habitList) {
+            if (habit.getName().equals(habitName)) {
                 return habit;
             }
         }
         return null;
     }
 
-    public void addHabitCompletion( String habitName ) {
-        Habit habit = getHabit( habitName );
-        if ( habitName == null ) {
-            throw new RuntimeException( "Habit name not in HabitList" );
+    public void addHabitCompletion(String habitName) {
+        Habit habit = getHabit(habitName);
+        if (habitName == null) {
+            throw new RuntimeException("Habit name not in HabitList");
         }
-        habit.addHabitCompletion( null );
-        Collections.sort( habitList );
+        habit.addHabitCompletion(null);
+        Collections.sort(habitList);
         notifyListeners();
     }
 
-    public void setHabitName( String oldName, String newName ) {
-        habitNames.remove( oldName );
-        habitNames.add( newName );
+    public void setHabitName(String oldName, String newName) {
+        if (habitNames.contains(newName)) {
+            throw new IllegalArgumentException("You may not change a habit name to one that already exists.");
+        }
+        if (newName.equals("")) {
+            throw new IllegalArgumentException("You may not set a habit name to be blank.");
+        }
+        habitNames.remove(oldName);
+        habitNames.add(newName);
 
-        for ( Habit habit : habitList ) {
-            if ( habit.getName().equals( oldName ) ) {
-                habit.setName( newName );
+        for (Habit habit : habitList) {
+            if (habit.getName().equals(oldName)) {
+                habit.setName(newName);
             }
         }
 
@@ -105,20 +110,20 @@ public class HabitList {
         return habitList.size();
     }
 
-    public void addListener( Listener newListener ) {
-        listeners.add( newListener );
+    public void addListener(Listener newListener) {
+        listeners.add(newListener);
     }
 
     public void notifyListeners() {
-        for ( Listener listen : listeners ) {
+        for (Listener listen : listeners) {
             listen.update();
         }
     }
 
     public void setHabitActives(String habitName, boolean[] newActiveList) {
-        for ( Habit habit : habitList ) {
-            if ( habit.getName().equals( habitName ) ) {
-                habit.setActive( newActiveList );
+        for (Habit habit : habitList) {
+            if (habit.getName().equals(habitName)) {
+                habit.setActive(newActiveList);
             }
         }
         notifyListeners();
