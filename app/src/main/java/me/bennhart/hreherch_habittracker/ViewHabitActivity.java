@@ -40,8 +40,16 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Creates a new view based on a habit and displays it to the user.
+ * Allows user to modify some information of the habit (name, days active, completions, etc)
+ */
 public class ViewHabitActivity extends AppCompatActivity {
 
+    /**
+     * Uses HabitListController to get the habit currently being viewed
+     * Sets up UI using information from the habit
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +63,7 @@ public class ViewHabitActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        // Sets toggle buttons to proper instance of "on" or "off" for the habit
         RelativeLayout dotw_layout = (RelativeLayout) findViewById(R.id.relativeLayout_dotwLayout);
         for (int i = 0; i < 7; i++) {
             ToggleButton b = (ToggleButton) dotw_layout.getChildAt(i);
@@ -64,6 +73,9 @@ public class ViewHabitActivity extends AppCompatActivity {
         updateStats();
     }
 
+    /**
+     * Handles setting up an ListView and ArrayListener for the Activity
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -72,9 +84,10 @@ public class ViewHabitActivity extends AppCompatActivity {
         HabitListController hlc = new HabitListController();
         final Habit habit = hlc.getViewHabit();
 
+        // Set up ArrayAdapter and ListView
         ListView completionListView = (ListView) findViewById(R.id.listView_ofCompletions);
         final ArrayList<String> habitCompletionArray = habit.getAdaptableCompletionArray();
-        final ArrayAdapter<String> completionAdapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> completionAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 habitCompletionArray);
         completionListView.setAdapter(completionAdapter);
@@ -93,24 +106,30 @@ public class ViewHabitActivity extends AppCompatActivity {
         completionListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(final AdapterView<?> parent, View view, int position, long id) {
-                // TODO http://stackoverflow.com/questions/27263008/alertdialog-with-numberpicker-rendered-incorrectly/27263520#27263520
                 AlertDialog.Builder adb = new AlertDialog.Builder(ViewHabitActivity.this);
+
                 String text = habitCompletionArray.get(position);
                 String[] textSplit = text.split(" ");
                 final String date = textSplit[0];
                 Integer completions = Integer.parseInt(textSplit[2]);
+
                 adb.setTitle("Completions for: " + date);
+
                 final NumberPicker picker = new NumberPicker(ViewHabitActivity.this);
                 picker.setMinValue(0);
                 picker.setMaxValue(50 + completions);
                 picker.setValue(completions);
                 picker.setWrapSelectorWheel(false);
+
+                // TODO http://stackoverflow.com/questions/27263008/alertdialog-with-numberpicker-rendered-incorrectly/27263520#27263520
                 FrameLayout frameParent = new FrameLayout(ViewHabitActivity.this);
-                frameParent.addView(picker, new FrameLayout.LayoutParams(
+                frameParent.addView( picker, new FrameLayout.LayoutParams(
                         FrameLayout.LayoutParams.WRAP_CONTENT,
                         FrameLayout.LayoutParams.WRAP_CONTENT,
                         Gravity.CENTER));
+
                 adb.setView(frameParent);
+
                 adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -119,12 +138,16 @@ public class ViewHabitActivity extends AppCompatActivity {
                         updateStats();
                     }
                 });
+
                 adb.show();
                 return false;
             }
         });
     }
 
+    /**
+     * Handles writing information about missed days, fulfilled days, etc to the Activity UI
+     */
     public void updateStats() {
         TextView completionRateView = (TextView) findViewById(R.id.textView_completionRate);
         TextView numCompletionsView = (TextView) findViewById(R.id.textView_completionNum);
@@ -146,12 +169,14 @@ public class ViewHabitActivity extends AppCompatActivity {
         numMissedView.setText(numMiss);
     }
 
+    /**
+     * Ensures the new toggled daysActive are saved to the habit when the user leaves the page
+     */
     @Override
     public void onBackPressed() {
         HabitListController habitListController = new HabitListController();
         Habit habit = habitListController.getViewHabit();
         final String habitName = habit.getName();
-        final Activity activity = this;
 
         boolean[] newActiveList = {false, false, false, false, false, false, false};
         RelativeLayout dotw_layout = (RelativeLayout) findViewById(R.id.relativeLayout_dotwLayout);
@@ -171,6 +196,9 @@ public class ViewHabitActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Handles menu presses (such as reset habit, rename habit, up, etc...)
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -194,17 +222,23 @@ public class ViewHabitActivity extends AppCompatActivity {
             return true;
         }
 
+        // creates a dialogue to edit the name
         if (id == R.id.action_editName) {
             AlertDialog.Builder adb = new AlertDialog.Builder(ViewHabitActivity.this);
             adb.setTitle("Set Habit's Name:");
+
             final EditText editText_habitName = new EditText(ViewHabitActivity.this);
             final ActionBar actBar = this.getSupportActionBar();
             editText_habitName.setText(habitName);
+
+            // limit the habit name length to 20 characters
             InputFilter[] filterArray = new InputFilter[1];
             filterArray[0] = new InputFilter.LengthFilter(20);
             editText_habitName.setFilters(filterArray);
             editText_habitName.setSingleLine(true);
+
             adb.setView(editText_habitName);
+
             adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -228,6 +262,7 @@ public class ViewHabitActivity extends AppCompatActivity {
             return true;
         }
 
+        // Shows a dialogue to confirm deleting the habit.
         if (id == R.id.action_deleteHabit) {
             AlertDialog.Builder adb = new AlertDialog.Builder(ViewHabitActivity.this);
             adb.setMessage("Delete " + habit.getName() + "?");

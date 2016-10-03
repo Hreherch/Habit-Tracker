@@ -47,7 +47,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * Main launcher activity for HabitTracker.
  * Allows user to see habit completions and complete them
  * Gives user ability to view individual habits or create new ones
  * Has Drawer functionality for resetting all data
@@ -58,6 +57,9 @@ public class MainActivity extends AppCompatActivity
 
     private static final String FILENAME = "sav.dat";
 
+    /**
+     * Sets up basic UI features like the Drawer, and floating action button
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // give the HabitListController the ability to Save data at any time.
@@ -87,6 +89,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    /**
+     * Sets up the UI based on data that changes (i.e. the day name, habits to complete)
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -127,6 +132,9 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    /**
+     * Closes the navigation drawer if it is open, otherwise should go back to launcher
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -137,15 +145,16 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Does action based on what menu item is selected in the navigation drawer
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        // creates a dialogue asking if the user is sure they want to reset all data.
         if (id == R.id.nav_reset_all) {
-            // creates a dialogue asking if the user is sure they want to reset all data.
             AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
             adb.setMessage("Delete Everything?");
             adb.setCancelable(true);
@@ -172,7 +181,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    // loads data from the save file if it exists
+    /**
+     * Loads saved data (The list of habits) using gson and sets up the controller to use it
+     */
     // TODO Code taken from LonelyTwitter
     public void load() {
         try {
@@ -192,7 +203,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // saves data to save file (and creates the save file if it exists)
+    /**
+     * Uses gson to save data (HabitList) to internal storage
+     */
     // TODO code taken from LonelyTwitter
     public void save() {
         try {

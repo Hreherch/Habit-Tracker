@@ -16,7 +16,7 @@
 package me.bennhart.hreherch_habittracker;
 
 /**
- * Created by Ben on 2016-09-30.
+ * Provides a Interface for notifying ArrayAdapters when the model changes
  */
 public interface Listener {
     abstract void update();

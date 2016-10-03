@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by Ben on 2016-09-23.
+ * Holds a list of habits for manipulation
  */
 public class HabitList {
     protected ArrayList<Habit> habitList;
@@ -36,6 +36,11 @@ public class HabitList {
         return habitList;
     }
 
+    /**
+     * Ensures no other habit with the same name exists then adds it to the habitList
+     *
+     * @param habit a new habit to add to the habit list
+     */
     public void addHabit(Habit habit) {
         if (habitNames.contains(habit.getName())) {
             throw new IllegalArgumentException("You may not have two habits with the same name.");
@@ -64,6 +69,12 @@ public class HabitList {
         notifyListeners();
     }
 
+    /**
+     * Returns a habit object based on the habitName passed
+     *
+     * @param habitName the name of the habit you with to get from the habitList
+     * @return null, if no habit exists by the given name, otherwise returns a specified habit
+     */
     public Habit getHabit(String habitName) {
         if (!(habitNames.contains(habitName))) {
             return null;
@@ -77,6 +88,11 @@ public class HabitList {
         return null;
     }
 
+    /**
+     * Adds a completion to today for a habit
+     *
+     * @param habitName the name of the habit that will get a completion for today
+     */
     public void addHabitCompletion(String habitName) {
         Habit habit = getHabit(habitName);
         if (habitName == null) {

@@ -23,7 +23,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * Created by Ben on 2016-09-22.
+ * tracks information relevant to a single habit using completionTracker and keeps track of
+ * what days the habit would be preferred to be done on
  */
 public class Habit implements Comparable<Habit> {
     private String name;
@@ -50,10 +51,12 @@ public class Habit implements Comparable<Habit> {
         try {
             this.completionTracker = new CompletionTracker(date);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Invalid date (must be today or before today) or format (yyyy-MM-dd).");
+            String message = "Invalid date (must be today or before today) or format (yyyy-MM-dd).";
+            throw new IllegalArgumentException(message);
         }
     }
 
+    // Ensures a Habit's name is not blank
     private void checkName(String name) {
         if (name.length() <= 0) {
             throw new IllegalArgumentException("A habit name may not be blank.");
@@ -73,6 +76,13 @@ public class Habit implements Comparable<Habit> {
         return completionTracker.getStartDate();
     }
 
+    /**
+     * Ensures safe handling of @Nullable methods in the class by returning today's date
+     * if a null has been passed in
+     *
+     * @param date a String that needs checked for being null
+     * @return today's date, or the date passed as a parameter
+     */
     public String checkNull(String date) {
         if (date == null) {
             GetToday today = new GetToday();
@@ -96,19 +106,29 @@ public class Habit implements Comparable<Habit> {
         completionTracker.setCompletions(date, numCompletions);
     }
 
+    /**
+     * Ensures that a passed index referencing day of the week is within the defined indices
+     *
+     * @param index the day of the week index to be checked
+     */
+    private void checkDOTWIndex(int index) {
+        if (index < 0 || 7 < index) {
+            String message = index + "Is not a valid day number. Use habit.XXX for ease of use.";
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    /**
+     * Sets the habit's active days
+     *
+     * @param dotwList a boolean array corresponding to days the habit is active, starting on Sunday
+     */
     public void setActive(boolean[] dotwList) {
         if (dotwList.length != 7) {
             String message = "This boolean[] must have 7 elements only";
             throw new IllegalArgumentException(message);
         }
         daysActiveList = dotwList;
-    }
-
-    private void checkDOTWIndex(int index) {
-        if (index < 0 || 7 < index) {
-            String message = index + "Is not a valid day number. Use habit.XXX for ease of use.";
-            throw new IllegalArgumentException(message);
-        }
     }
 
     public void setActive(int day, boolean active) {
@@ -127,6 +147,12 @@ public class Habit implements Comparable<Habit> {
         return isActiveOn(dotw);
     }
 
+    /**
+     * Comparator for habits.
+     *
+     * @param habit a habit to compare this habit to
+     * @return -1 or 1
+     */
     @Override
     public int compareTo(@NonNull Habit habit) {
         // return positive if this > that
@@ -161,10 +187,6 @@ public class Habit implements Comparable<Habit> {
 
     public void addListener(Listener newListener) {
         completionTracker.addListener(newListener);
-    }
-
-    public void notifyListeners() {
-        completionTracker.notifyListeners();
     }
 
     public int getNumListeners() {

@@ -34,6 +34,9 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+/**
+ * Creates UI for user to add a new habit
+ */
 public class AddHabitActivity extends AppCompatActivity {
 
     @Override
@@ -46,18 +49,24 @@ public class AddHabitActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        // Set the entry for the new habit's start date to be today's date
         GetToday today = new GetToday();
         final TextView textView_date = (TextView) findViewById(R.id.editText_date);
         textView_date.setText(today.getString());
     }
 
-    public void calendarDialogue(View v) {
+    /**
+     * Creates a dialogue that allows the user to select a date for the start date
+     * of their habit, sets the start date text to the selected date.
+     */
+    public void calendarDialog(View v) {
         AlertDialog.Builder adb = new AlertDialog.Builder(AddHabitActivity.this);
         adb.setTitle("Pick the Start Date");
 
         final DatePicker calendarPicker = new DatePicker(AddHabitActivity.this);
         calendarPicker.setMaxDate(System.currentTimeMillis());
 
+        // setup a frame for the datePicker to be in and add it to the AlertDialog
         FrameLayout frameParent = new FrameLayout(AddHabitActivity.this);
         frameParent.addView(calendarPicker, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -80,6 +89,9 @@ public class AddHabitActivity extends AppCompatActivity {
         adb.show();
     }
 
+    /**
+     * Returns to the last activity (MainActivity) when up/back is pressed
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -92,6 +104,9 @@ public class AddHabitActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Returns an array of the days selected to be active
+     */
     public boolean[] getCheckedDays() {
         int[] buttonIds = {R.id.button_sunday, R.id.button_monday, R.id.button_tuesday,
                 R.id.button_wednesday, R.id.button_thursday, R.id.button_friday,
@@ -106,6 +121,10 @@ public class AddHabitActivity extends AppCompatActivity {
         return dotw;
     }
 
+    /**
+     * Attempts to create a new habit with the data given currently, returns Toast errors
+     * if unsuccessful, otherwise returns the user to MainActivity with a new habit created
+     */
     public void addHabit(View v) {
         HabitListController controller = new HabitListController();
 
@@ -128,7 +147,12 @@ public class AddHabitActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * If a user is clicking in the wrong spot to change the date notifies them where to click
+     * instead.
+     */
     public void toastDateChange(View view) {
-        Toast.makeText(AddHabitActivity.this, "Click the calender button to set the date", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddHabitActivity.this, "Click the calender button to set the date",
+                Toast.LENGTH_SHORT).show();
     }
 }

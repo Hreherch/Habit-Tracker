@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by Ben on 2016-09-23.
+ * Tracks "completions" or counts per day of some activity
  */
 public class CompletionTracker {
     private List<String> dates = new ArrayList<>();
@@ -41,6 +41,14 @@ public class CompletionTracker {
         return startDate;
     }
 
+    /**
+     * Validates a given date to ensure the date complies with the assumptions of the tracker.
+     * i.e. The date is not after today, the date is not before the start day, and the date is
+     * of the proper format (yyyy-MM-dd).
+     *
+     * @param date a string date to check for validity, has format yyyy-MM-dd
+     * @throws IllegalArgumentException
+     */
     private void validateDate(String date) throws IllegalArgumentException {
         GetToday getToday = new GetToday();
         DateFormat formatter = new SimpleDateFormat(getToday.getDateFormat(),
@@ -68,10 +76,13 @@ public class CompletionTracker {
             throw new IllegalArgumentException(message);
         }
 
-        String[] splitDate = date.split("-");
-
     }
 
+    /**
+     * Adds a completion to a given date and notifies any listeners
+     *
+     * @param date a String representing the day you want to add a completion, format: yyyy-MM-dd
+     */
     public void addCompletion(String date) {
         date = date.trim();
         validateDate(date);
@@ -87,7 +98,12 @@ public class CompletionTracker {
         notifyListeners();
     }
 
-    // returns -1 if date is before start range or after today
+    /**
+     * Returns the number of completions on a given date
+     *
+     * @param date a String of the date you want to get the completions of, format: yyyy-MM-dd
+     * @return the number of completions on date or -1 if given an out of range date
+     */
     public int getCompletions(String date) {
         date = date.trim();
         GetToday today = new GetToday();
@@ -103,6 +119,13 @@ public class CompletionTracker {
         }
     }
 
+    /**
+     * Sets the number of completions for a date.
+     *
+     * @param date a String specifying what day you want to set completions for, format: yyyy-MM-dd
+     * @param numCompletions a integer specifying how many completions there should be on date
+     * @throws IllegalArgumentException
+     */
     public void setCompletions(String date, int numCompletions) throws IllegalArgumentException {
         if (numCompletions < 0) {
             throw new IllegalArgumentException("You may not have less than 0 completions");
@@ -111,7 +134,7 @@ public class CompletionTracker {
         date = date.trim();
         validateDate(date);
 
-        // TODO simplify this if/else block
+        // TODO simplify this if/else block?
         if (dates.contains(date)) {
             completions.set(dates.indexOf(date), numCompletions);
         } else {
@@ -122,7 +145,7 @@ public class CompletionTracker {
         notifyListeners();
     }
 
-    // includes today as part of count
+    // includes today
     public int getNumDaysTracked() {
         GetToday today = new GetToday();
         String date = startDate;
@@ -142,6 +165,7 @@ public class CompletionTracker {
         return completes;
     }
 
+    // AKA the number of days that have >0 completions
     public int getNumDaysFulfilled() {
         Integer fulfilled = 0;
         for (Integer numComplete : completions) {
@@ -186,6 +210,12 @@ public class CompletionTracker {
         listeners.clear();
     }
 
+    /**
+     * Returns an array that can be used with an ArrayAdapter to create a ListView of completions
+     * and what days they have been completed on
+     *
+     * @return a String array that contains date:numCompletions pairs
+     */
     public ArrayList<String> getAdaptableCompletionArray() {
         ArrayList<String> adaptableCompletionArray = new ArrayList<>();
         GetToday today = new GetToday();

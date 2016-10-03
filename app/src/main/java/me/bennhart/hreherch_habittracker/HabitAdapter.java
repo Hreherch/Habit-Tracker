@@ -29,7 +29,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * Created by Ben on 2016-09-30.
+ * Adapts a Habit ArrayList specifically for habitlist_item.xml
  */
 public class HabitAdapter extends ArrayAdapter<Habit> {
     private ArrayList<Habit> habitList;
@@ -39,6 +39,14 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
         this.habitList = habitArrayList;
     }
 
+    /**
+     * Sets up a habit to be put into the arraylist on MainActivity
+     *
+     * @param position the current position in the Habit Array
+     * @param v the view being put into
+     * @param parent the parent that contains the view
+     * @return v
+     */
     public View getView(int position, View v, ViewGroup parent) {
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -58,11 +66,14 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
                 habitName.setText(habit.getName());
             }
             if (completions != null) {
+                // show the number of completions in the form x##
                 String text = "x" + numComplete;
                 completions.setText(text);
             }
             if (completeButton != null) {
                 completeButton.setTag(position);
+
+                // Set the color and image of the complete buttons
                 if (habit.isActiveToday()) {
                     if (numComplete <= 0) {
                         completeButton.setImageResource(R.drawable.ic_priority_high_black);
@@ -81,6 +92,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
                     }
                 }
 
+                // Add the ability to add completions when clicking the complete button
                 completeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -91,6 +103,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
                     }
                 });
 
+                // show what days a habit is active on
                 for (int i = 0; i < 7; i++) {
                     TextView dotw_text = (TextView) dotw_layout.getChildAt(i);
                     boolean active = habit.isActiveOn(i);

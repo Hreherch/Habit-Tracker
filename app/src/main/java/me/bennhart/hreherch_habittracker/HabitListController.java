@@ -18,12 +18,11 @@ package me.bennhart.hreherch_habittracker;
 import android.support.annotation.Nullable;
 
 /**
- * Created by Ben on 2016-09-26.
+ * Singleton for a HabitList, viewHabit, and saveContext
  */
 public class HabitListController {
     private static HabitList habitList = null;
     private static Integer viewHabit = null;
-    private static String FILENAME = "sav.dat";
     private static MainActivity saveContext = null;
 
     public static HabitList getHabitList() {
@@ -33,15 +32,25 @@ public class HabitListController {
         return habitList;
     }
 
+    // used after/during a load to return to a saved state of the HabitList
     public static void setHabitList(HabitList newHabitList) {
         habitList = newHabitList;
         save();
     }
 
+    // holds the context that can save to file, so that the controller can save after modifying
     public static void setSaveContext(MainActivity context) {
         saveContext = context;
     }
 
+    /**
+     * Adds a habit to the habitList, with the given habitName, and start date,
+     *
+     * @param habitName the name of the new habit
+     * @param date the start date of a new habit (format yyyy-MM-dd)
+     * @param listOfActiveDays corresponds to what days the habit is active on
+     * @return An error message if a problem occurred, null otherwise
+     */
     public String addHabit(String habitName, String date, boolean[] listOfActiveDays) {
         try {
             Habit newHabit = new Habit(habitName, date);
@@ -54,6 +63,12 @@ public class HabitListController {
         return null;
     }
 
+    /**
+     * Adds a completion to a habit by calling addCompletionToday with the habit's name, finds
+     * the habit's name using the given position in the habitList array
+     *
+     * @param position the index that the habit is at in the habitList
+     */
     public void addCompletionToday(int position) {
         addCompletionToday(getHabitList().getHabits().get(position).getName());
         save();
@@ -69,6 +84,7 @@ public class HabitListController {
         save();
     }
 
+    // Sets the current "viewing" habit to be used with ViewHabitActivity
     public void setViewHabit(@Nullable Integer index) {
         viewHabit = index;
     }
@@ -80,6 +96,7 @@ public class HabitListController {
         return HabitListController.getHabitList().getHabits().get(viewHabit);
     }
 
+    // for changing the currently view'd habit's name
     public void setViewHabitName(String newHabitName) {
         getHabitList().setHabitName(getViewHabit().getName(), newHabitName);
         save();
@@ -94,6 +111,9 @@ public class HabitListController {
         saveContext.save();
     }
 
+    /**
+     * Clears all data from the saved file and habitList
+     */
     public static void reset() {
         habitList = null;
         viewHabit = null;

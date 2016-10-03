@@ -193,6 +193,6 @@
         android:layout_toEndOf="@+id/editText_date"
         android:layout_alignBottom="@+id/editText_date"
         android:background="@color/colorPrimaryDark"
-        android:onClick="calendarDialogue" />
+        android:onClick="calendarDialog" />
 
 </RelativeLayout>
