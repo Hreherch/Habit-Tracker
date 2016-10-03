@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
         // update listView
         ListView habitListView = (ListView) findViewById( R.id.listView_ofHabits );
         final HabitAdapter habitArrayAdapter;
-        final ArrayList<Habit> list = new ArrayList<Habit>();
+        //final ArrayList<Habit> list = new ArrayList<Habit>();
         ArrayList<Habit> habitList = HabitListController.getHabitList().getHabits();
         habitArrayAdapter = new HabitAdapter( this, R.layout.habitlist_item,
                                               habitList );
@@ -149,13 +149,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

@@ -32,7 +32,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
             v = inflater.inflate( R.layout.habitlist_item, null );
         }
 
-        Habit habit = habitList.get( position );
+        final Habit habit = habitList.get( position );
 
         if ( habit != null ) {
             TextView habitName = (TextView) v.findViewById( R.id.textView_habitName );
@@ -74,6 +74,7 @@ public class HabitAdapter extends ArrayAdapter<Habit> {
                         int position = (Integer) v.getTag();
                         HabitListController habitListController = new HabitListController();
                         habitListController.addCompletionToday( position );
+                        Toast.makeText( v.getContext(), "Completion added to: " + habit.getName(), Toast.LENGTH_SHORT ).show();
                     }
                 });
 
