@@ -87,9 +87,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        // Start navigation window with to-do selected
-        navigationView.setCheckedItem( R.id.nav_button_todo );
     }
 
     @Override
@@ -100,10 +97,6 @@ public class MainActivity extends AppCompatActivity
         TextView dayText = (TextView) findViewById( R.id.editText_dayName );
         GetToday today = new GetToday();
         dayText.setText( today.getDayName() );
-
-        // reset navigation button to the to-do on return from other activities
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setCheckedItem( R.id.nav_button_todo );
 
         // update listView
         ListView habitListView = (ListView) findViewById( R.id.listView_ofHabits );
@@ -158,19 +151,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_button_todo) {
-            // do nothing (you're already here)
-
-        } else if (id == R.id.nav_button_history) {
-            Intent intent = new Intent( MainActivity.this, ViewHistoryActivity.class );
-            startActivity( intent );
-
-        } else if (id == R.id.nav_button_statistics) {
-            Intent intent = new Intent( MainActivity.this, ViewStatisticsActivity.class );
-            startActivity( intent );
-
-        } else if (id == R.id.nav_reset_all) {
-
+        if (id == R.id.nav_reset_all) {
+            // TODO reset dialogue
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
