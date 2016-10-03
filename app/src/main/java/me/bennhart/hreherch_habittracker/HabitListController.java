@@ -1,49 +1,57 @@
+//        Copyright (C) 2016 Bennett Hreherchuk hreherch@ualberta.ca
+//
+//        This program is free software: you can redistribute it and/or modify
+//        it under the terms of the GNU General Public License as published by
+//        the Free Software Foundation, either version 3 of the License, or
+//        (at your option) any later version.
+//
+//        This program is distributed in the hope that it will be useful,
+//        but WITHOUT ANY WARRANTY; without even the implied warranty of
+//        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//        GNU General Public License for more details.
+//
+//        You should have received a copy of the GNU General Public License
+//        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 package me.bennhart.hreherch_habittracker;
 
-import android.content.Context;
 import android.support.annotation.Nullable;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-
 /**
- * Created by Ben on 2016-09-26.
+ * Singleton for a HabitList, viewHabit, and saveContext
  */
 public class HabitListController {
     private static HabitList habitList = null;
     private static Integer viewHabit = null;
-    private static String FILENAME = "sav.dat";
     private static MainActivity saveContext = null;
 
     public static HabitList getHabitList() {
-        if ( habitList == null ) {
+        if (habitList == null) {
             habitList = new HabitList();
         }
         return habitList;
     }
 
-    public static void setHabitList( HabitList newHabitList ) {
+    // used after/during a load to return to a saved state of the HabitList
+    public static void setHabitList(HabitList newHabitList) {
         habitList = newHabitList;
         save();
     }
 
-    public static void setSaveContext( MainActivity context ) {
+    // holds the context that can save to file, so that the controller can save after modifying
+    public static void setSaveContext(MainActivity context) {
         saveContext = context;
     }
 
-    public String addHabit( String habitName, String date, boolean[] listOfActiveDays ) {
+    /**
+     * Adds a habit to the habitList, with the given habitName, and start date,
+     *
+     * @param habitName the name of the new habit
+     * @param date the start date of a new habit (format yyyy-MM-dd)
+     * @param listOfActiveDays corresponds to what days the habit is active on
+     * @return An error message if a problem occurred, null otherwise
+     */
+    public String addHabit(String habitName, String date, boolean[] listOfActiveDays) {
         try {
             Habit newHabit = new Habit(habitName, date);
             newHabit.setActive(listOfActiveDays);
@@ -55,43 +63,68 @@ public class HabitListController {
         return null;
     }
 
-    public void addCompletionToday( int position ) {
-        addCompletionToday( getHabitList().getHabits().get( position ).getName() );
+    /**
+     * Adds a completion to a habit by calling addCompletionToday with the habit's name, finds
+     * the habit's name using the given position in the habitList array
+     *
+     * @param position the index that the habit is at in the habitList
+     */
+    public void addCompletionToday(int position) {
+        addCompletionToday(getHabitList().getHabits().get(position).getName());
         save();
     }
 
-    public void addCompletionToday( String habitName ) {
-        getHabitList().addHabitCompletion( habitName );
+    public void addCompletionToday(String habitName) {
+        getHabitList().addHabitCompletion(habitName);
         save();
     }
 
-    public void removeHabit( String habitName ) {
-        getHabitList().removeHabit( habitName );
+    public void removeHabit(String habitName) {
+        getHabitList().removeHabit(habitName);
         save();
     }
 
-    public void setViewHabit( @Nullable Integer index ) {
+    // Sets the current "viewing" habit to be used with ViewHabitActivity
+    public void setViewHabit(@Nullable Integer index) {
         viewHabit = index;
     }
 
     public Habit getViewHabit() {
         if (viewHabit == null) {
-            throw new RuntimeException( "viewHabit was not set properly." );
+            throw new RuntimeException("viewHabit was not set properly.");
         }
-        return HabitListController.getHabitList().getHabits().get( viewHabit );
+        return HabitListController.getHabitList().getHabits().get(viewHabit);
     }
 
-    public void setViewHabitName( String newHabitName ) {
-        getHabitList().setHabitName( getViewHabit().getName(), newHabitName );
+    // for changing the currently view'd habit's name
+    public void setViewHabitName(String newHabitName) {
+        getHabitList().setHabitName(getViewHabit().getName(), newHabitName);
         save();
     }
 
-    public void setHabitActives( String habitName, boolean[] newActiveList ) {
-        getHabitList().setHabitActives( habitName, newActiveList );
+    public void setHabitActives(String habitName, boolean[] newActiveList) {
+        getHabitList().setHabitActives(habitName, newActiveList);
         save();
     }
 
     public static void save() {
         saveContext.save();
+    }
+
+    /**
+     * Clears all data from the saved file and habitList
+     */
+    public static void reset() {
+        habitList = null;
+        viewHabit = null;
+        save();
+    }
+
+    public void resetHabit(String habitName) {
+        getHabitList().removeHabit( habitName );
+        Habit habit = new Habit( habitName );
+        getHabitList().addHabit( habit );
+        setViewHabit( getHabitList().getHabits().indexOf( habit ) );
+        save();
     }
 }

@@ -26,4 +26,6 @@
     <string name="action_deleteHabit">Delete Habit</string>
     <string name="action_editName">Edit Habit Name</string>
     <string name="action_resetHabit">Reset Habit</string>
+    <string name="menu_textTitle_resetHabitTracker">Reset Habit Tracker</string>
+    <string name="menu_text_resetAllData">Reset All Data</string>
 </resources>

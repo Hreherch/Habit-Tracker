@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_button_todo"
-            android:icon="@drawable/ic_all_done_black"
-            android:title="ToDo" />
-        <item
-            android:id="@+id/nav_button_history"
-            android:icon="@drawable/ic_history_black"
-            android:title="History" />
-        <item
-            android:id="@+id/nav_button_statistics"
-            android:icon="@drawable/ic_equalizer_black"
-            android:title="Statistics" />
-    </group>
-
-    <item android:title="Reset Habit Tracker">
+    <item android:title="@string/menu_textTitle_resetHabitTracker">
         <menu>
             <item
                 android:id="@+id/nav_reset_all"
                 android:icon="@drawable/ic_delete_forever_black"
-                android:title="Reset All Data" />
+                android:title="@string/menu_text_resetAllData" />
         </menu>
     </item>
 

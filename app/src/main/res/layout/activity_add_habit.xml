@@ -156,12 +156,16 @@
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/editText_habitName" />
 
-    <EditText
+    <TextView
         android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:inputType="date"
+        android:layout_height="40dp"
         android:ems="10"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/black"
         android:hint="yyyy-mm-dd"
+        android:onClick="toastDateChange"
         android:maxLines="1"
         android:maxLength="10"
         android:id="@+id/editText_date"
@@ -180,6 +184,7 @@
         android:layout_marginBottom="77dp" />
 
     <ImageButton
+        android:contentDescription="A calendar"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:id="@+id/imageButton_calendar"
@@ -187,7 +192,7 @@
         android:layout_alignTop="@+id/editText_date"
         android:layout_toEndOf="@+id/editText_date"
         android:layout_alignBottom="@+id/editText_date"
-        android:background="@color/colorPrimary"
-        android:onClick="summonCalendar" />
+        android:background="@color/colorPrimaryDark"
+        android:onClick="calendarDialog" />
 
 </RelativeLayout>
