@@ -24,3 +24,9 @@ for options with the habit (i.e. deleting a habit, renaming it, etc).
 Long press on a completion after going to its specific view habit page, 
 this will give you the ability to set the number of completions for that day
 using a picker dialog.
+
+
+= = = Attribution
+Code was modeled from
+Student Picker Copyright (C) 2014 Abram Hindle abram.hindle@softwareprocess.ca
+Lonely Twitter by Joshua Charles Campbell (unlicensed)
