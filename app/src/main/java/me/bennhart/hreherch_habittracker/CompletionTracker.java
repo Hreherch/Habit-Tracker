@@ -24,6 +24,10 @@ import java.util.Locale;
 
 /**
  * Tracks "completions" or counts per day of some activity
+ *
+ * Uses a parallel array system to track date[i] completions[i] pairs, this way we can track the
+ * number of completions per day rather than a list of dates representing one completion for every
+ * entry
  */
 public class CompletionTracker {
     private List<String> dates = new ArrayList<>();

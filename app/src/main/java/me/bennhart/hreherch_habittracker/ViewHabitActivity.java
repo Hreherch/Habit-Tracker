@@ -63,13 +63,7 @@ public class ViewHabitActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        // Sets toggle buttons to proper instance of "on" or "off" for the habit
-        RelativeLayout dotw_layout = (RelativeLayout) findViewById(R.id.relativeLayout_dotwLayout);
-        for (int i = 0; i < 7; i++) {
-            ToggleButton b = (ToggleButton) dotw_layout.getChildAt(i);
-            b.setChecked(habit.isActiveOn(i));
-        }
-
+        setActiveDayToggles();
         updateStats();
     }
 
@@ -170,6 +164,21 @@ public class ViewHabitActivity extends AppCompatActivity {
     }
 
     /**
+     * Sets up the toggle buttons to represent current active days of the habit
+     */
+    public void setActiveDayToggles() {
+        HabitListController hlc = new HabitListController();
+        Habit habit = hlc.getViewHabit();
+
+        // Sets toggle buttons to proper instance of "on" or "off" for the habit
+        RelativeLayout dotw_layout = (RelativeLayout) findViewById(R.id.relativeLayout_dotwLayout);
+        for (int i = 0; i < 7; i++) {
+            ToggleButton b = (ToggleButton) dotw_layout.getChildAt(i);
+            b.setChecked(habit.isActiveOn(i));
+        }
+    }
+
+    /**
      * Ensures the new toggled daysActive are saved to the habit when the user leaves the page
      */
     @Override
@@ -218,7 +227,28 @@ public class ViewHabitActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_resetHabit) {
-            // TODO reset habit functionality
+            AlertDialog.Builder adb = new AlertDialog.Builder(ViewHabitActivity.this);
+            adb.setTitle("Reset " + habit.getName() + "?");
+            adb.setMessage( "This will set the startDate to today, toggle all days active to off," +
+                    " and remove all completions." );
+            adb.setCancelable(true);
+            adb.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    HabitListController hbc = new HabitListController();
+                    hbc.resetHabit(habitName);
+                    updateStats();
+                    setActiveDayToggles();
+                    onResume();
+                }
+            });
+            adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //pass
+                }
+            });
+            adb.show();
             return true;
         }
 

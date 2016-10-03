@@ -20,6 +20,9 @@ import java.util.Collections;
 
 /**
  * Holds a list of habits for manipulation
+ *
+ * Uses an ArrayList of names to aid in preventing duplicate habit names in the HabitList
+ * Allows Listeners to see if data has changed and notifies
  */
 public class HabitList {
     protected ArrayList<Habit> habitList;
@@ -136,6 +139,7 @@ public class HabitList {
         }
     }
 
+    // Sets a habit's days active
     public void setHabitActives(String habitName, boolean[] newActiveList) {
         for (Habit habit : habitList) {
             if (habit.getName().equals(habitName)) {

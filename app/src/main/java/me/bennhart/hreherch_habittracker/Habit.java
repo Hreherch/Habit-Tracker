@@ -25,6 +25,11 @@ import java.util.GregorianCalendar;
 /**
  * tracks information relevant to a single habit using completionTracker and keeps track of
  * what days the habit would be preferred to be done on
+ *
+ * Uses a completionTracker to track its completions and uses a boolean array for each of its days
+ * of the week.
+ * The SUN, MON, etc indices are not static because they should only be used with an instance of
+ * a habit
  */
 public class Habit implements Comparable<Habit> {
     private String name;

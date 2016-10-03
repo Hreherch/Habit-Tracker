@@ -119,4 +119,12 @@ public class HabitListController {
         viewHabit = null;
         save();
     }
+
+    public void resetHabit(String habitName) {
+        getHabitList().removeHabit( habitName );
+        Habit habit = new Habit( habitName );
+        getHabitList().addHabit( habit );
+        setViewHabit( getHabitList().getHabits().indexOf( habit ) );
+        save();
+    }
 }
