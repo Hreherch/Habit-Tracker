@@ -249,4 +249,14 @@ public class HabitTest extends TestCase {
         assertTrue( "testSetActive: Mondays were set active.",
                      myHabit.isActiveOn( myHabit.MON ) );
     }
+
+    public void testWrongDates() {
+        String date = "2016-09-00";
+        try {
+            Habit myHabit = new Habit("why?", date );
+            assertTrue( "Habit should throw error on dates like 2016-09-00", false );
+        } catch ( Exception e ) {
+            assertTrue( true );
+        }
+    }
 }

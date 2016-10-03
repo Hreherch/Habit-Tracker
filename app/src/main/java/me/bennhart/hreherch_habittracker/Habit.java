@@ -51,7 +51,7 @@ public class Habit implements Comparable<Habit> {
         try {
             this.completionTracker = new CompletionTracker(date);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException( "Invalid date (must be today or before today)." );
+            throw new IllegalArgumentException( "Invalid date (must be today or before today) or format (yyyy-MM-dd)." );
         }
     }
 

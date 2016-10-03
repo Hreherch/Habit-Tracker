@@ -70,6 +70,9 @@ public class CompletionTracker {
                              + getToday.getDateFormat();
             throw new IllegalArgumentException( message );
         }
+
+        String[] splitDate = date.split( "-" );
+
     }
 
     public void addCompletion( String date ) {

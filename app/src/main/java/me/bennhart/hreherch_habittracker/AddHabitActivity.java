@@ -19,16 +19,30 @@ package me.bennhart.hreherch_habittracker;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class AddHabitActivity extends AppCompatActivity {
 
@@ -43,9 +57,37 @@ public class AddHabitActivity extends AppCompatActivity {
         }
 
         GetToday today = new GetToday();
+        final TextView textView_date = (TextView) findViewById( R.id.editText_date );
+        textView_date.setText( today.getString() );
+    }
 
-        EditText editText_date = (EditText) findViewById( R.id.editText_date );
-        editText_date.setText( today.getString() );
+    public void calendarDialogue( View v ) {
+        AlertDialog.Builder adb = new AlertDialog.Builder( AddHabitActivity.this );
+        adb.setTitle( "Pick the Start Date" );
+
+        final DatePicker calendarPicker = new DatePicker( AddHabitActivity.this );
+        calendarPicker.setMaxDate( System.currentTimeMillis() );
+
+        FrameLayout frameParent = new FrameLayout( AddHabitActivity.this );
+        frameParent.addView( calendarPicker, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                Gravity.CENTER ));
+        adb.setView( frameParent );
+
+        adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                GetToday today = new GetToday();
+                TextView textView_date = (TextView) findViewById( R.id.editText_date );
+                GregorianCalendar calendar = new GregorianCalendar();
+                calendar.set( calendarPicker.getYear(), calendarPicker.getMonth(), calendarPicker.getDayOfMonth() );
+                DateFormat formatter = new SimpleDateFormat( today.getDateFormat(), Locale.getDefault() );
+                textView_date.setText( formatter.format( calendar.getTime() ) );
+            }
+        });
+
+        adb.show();
     }
 
     @Override
@@ -81,12 +123,13 @@ public class AddHabitActivity extends AppCompatActivity {
         String habitName = editText_habitName.getText().toString();
 
         // TODO ensure date error checking
-        EditText editText_date = (EditText) findViewById( R.id.editText_date );
+        TextView textView_date = (TextView) findViewById( R.id.editText_date );
 
         String error = "";
         error = controller.addHabit( habitName,
-                                     editText_date.getText().toString(),
+                                     textView_date.getText().toString(),
                                      getCheckedDays() );
+
         if ( error != null ) {
             Toast.makeText( this, error, Toast.LENGTH_LONG ).show();
 
@@ -94,5 +137,9 @@ public class AddHabitActivity extends AppCompatActivity {
             Toast.makeText(this, "Habit: " + habitName + " added.", Toast.LENGTH_SHORT).show();
             this.finish();
         }
+    }
+
+    public void toastDateChange(View view) {
+        Toast.makeText( AddHabitActivity.this, "Click the calender button to set the date", Toast.LENGTH_SHORT ).show();
     }
 }
