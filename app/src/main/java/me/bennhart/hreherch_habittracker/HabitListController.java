@@ -94,4 +94,10 @@ public class HabitListController {
     public static void save() {
         saveContext.save();
     }
+
+    public static void reset() {
+        habitList = null;
+        viewHabit = null;
+        save();
+    }
 }

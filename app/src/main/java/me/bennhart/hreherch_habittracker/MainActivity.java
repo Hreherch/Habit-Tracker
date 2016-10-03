@@ -17,11 +17,13 @@ package me.bennhart.hreherch_habittracker;
 //        along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -151,7 +153,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_reset_all) {
-            // TODO reset dialogue
+            AlertDialog.Builder adb = new AlertDialog.Builder( MainActivity.this );
+            adb.setMessage( "Delete Everything?" );
+            adb.setCancelable( true );
+            adb.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    HabitListController.reset();
+                    onBackPressed();
+                    onResume();
+                }
+            });
+            adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //pass
+                }
+            });
+            adb.show();
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
